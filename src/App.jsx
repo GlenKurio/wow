@@ -9,7 +9,7 @@ function App() {
       <button className="btn btn-primary">DOWNLOAD</button>
 
       <button className="btn btn-neutral  ">DOWNLOAD</button>
-      <button className="btn btn-neutral btn-outline ">DOWNLOAD</button>
+      <button className="btn btn-ghost  ">DOWNLOAD</button>
 
       {/* Open the modal using document.getElementById('ID').showModal() method */}
       <button

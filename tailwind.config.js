@@ -30,6 +30,7 @@ export default {
           error: "#f9d3d7",
           "error-content": "#E22137",
           "base-100": "#202020",
+          "base-content": "#f6f4fe",
         },
       },
       {
@@ -52,6 +53,7 @@ export default {
           error: "#f9d3d7",
           "error-content": "#E22137",
           "base-100": "#f6f4fe",
+          "base-content": "#202020",
         },
       },
     ],
