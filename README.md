@@ -1,1 +1,1 @@
-# Who Owes Whom (WOW App)
+# Who Owes Whom (WOW) App
