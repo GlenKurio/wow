@@ -22,8 +22,8 @@ function UserCard({ user }) {
     <article className="flex ">
       <div className="stats shadow">
         <div className="stat">
-          <div className="avatar">
-            <div className="w-20 h-20 rounded">
+          <div className="avatar ">
+            <div className="w-20 h-20 rounded-full">
               <img src={user.avatar} />
             </div>
           </div>
