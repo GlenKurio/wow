@@ -1,6 +1,6 @@
-import ActionButton from "../../components/appHome/ActionButton";
-import AllUsers from "../../components/appHome/AllUsers";
-import TransactionsTable from "../../components/appHome/transactionsTable/TransactionsTable";
+import ActionButton from "../../components/appComponents/appHome/ActionButton";
+import AllUsers from "../../components/appComponents/appHome/AllUsers";
+import TransactionsTable from "../../components/appComponents/appHome/transactionsTable/TransactionsTable";
 const users = [
   {
     uid: 1,
