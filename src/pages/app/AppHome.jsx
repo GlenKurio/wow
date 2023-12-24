@@ -1,3 +1,4 @@
+import ActionButton from "../../components/appHome/ActionButton";
 import AllUsers from "../../components/appHome/AllUsers";
 import TransactionsTable from "../../components/appHome/transactionsTable/TransactionsTable";
 const users = [
@@ -49,7 +50,9 @@ const users = [
 ];
 function AppHome() {
   return (
-    <main className="">
+    <main className="relative pb-16">
+      <ActionButton />
+
       <h2 className="px-6 text-2xl font-bold  uppercase tracking-[1px]  mt-8 mb-4">
         Your balances:
       </h2>

@@ -10,6 +10,7 @@ import AuthPage from "./pages/landing/auth/AuthPage";
 import AppLayout from "./components/layouts/appLayout/AppLayout";
 import AppHome from "./pages/app/AppHome";
 import RootRoute from "./pages/RootRoute";
+import RegisterTransaction from "./pages/app/RegisterTransaction";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<RootRoute />}>
@@ -19,6 +20,7 @@ const router = createBrowserRouter(
       </Route>
       <Route path="app" element={<AppLayout />}>
         <Route index element={<AppHome />} />
+        <Route path="new-transaction" element={<RegisterTransaction />} />
       </Route>
     </Route>
   )

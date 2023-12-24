@@ -1,6 +1,6 @@
 function AvatarGroup({ transaction, users }) {
   const participants = transaction.participants;
-  console.log(participants);
+
   function getUsersAvatars() {
     if (
       !participants ||
@@ -20,11 +20,11 @@ function AvatarGroup({ transaction, users }) {
   }
 
   const avatars = getUsersAvatars();
-  console.log(avatars);
+
   return (
     <div className="avatar-group -space-x-6 rtl:space-x-reverse">
-      {avatars.map((avatar) => (
-        <div className="avatar ">
+      {avatars.map((avatar, idx) => (
+        <div className="avatar " key={idx}>
           <div className=" w-8">
             <img src={avatar || "/avatar-placeholder.png"} />
           </div>
