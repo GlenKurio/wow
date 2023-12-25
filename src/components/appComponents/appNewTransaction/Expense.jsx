@@ -12,10 +12,8 @@ function Expense() {
   const { register, handleSubmit, formState, reset } = useForm();
   const { errors } = formState;
   const { handleImageChange, setSelectedFile, selectedFile } = usePreviewImg();
-  // console.log(errors.length);
 
   function onSubmit(inputs) {
-    console.log(inputs);
     let users = [];
 
     users = Object.keys(inputs).filter(
@@ -35,7 +33,6 @@ function Expense() {
       img: selectedFile || null,
       participants: users,
     };
-    console.log(expense);
 
     registerNewExpense(expense, {
       onSuccess: (inputs) => {
@@ -114,7 +111,7 @@ function Expense() {
               className="checkbox checkbox-lg checkbox-accent"
             />
             <div className="avatar flex items-center gap-4">
-              <div className=" w-16 rounded-full  ">
+              <div className=" w-12 rounded-full  ">
                 <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
               </div>
               <span className="text-2xl font-bold">User Name</span>
@@ -151,13 +148,19 @@ function Expense() {
           </div>
           <input
             type="file"
-            placeholder="Description of expense"
             className="file-input file-input-bordered w-full max-w-[30rem] "
             onChange={handleImageChange}
           />
         </label>
-
-        <button className="btn btn-accent w-full mt-8">Submit</button>
+        {isRegistering ? (
+          <button className="btn btn-accent w-full mt-8">
+            <span className="loading loading-spinner loading-xs"></span>{" "}
+          </button>
+        ) : (
+          <button className="btn btn-accent w-full mt-8">
+            Register Transaction{" "}
+          </button>
+        )}
       </form>
     </section>
   );

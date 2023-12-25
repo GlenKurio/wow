@@ -2,12 +2,17 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useState } from "react";
 import usePreviewImg from "../../../hooks/usePreviewImg";
+import { useRegisterTransfer } from "../../../hooks/useRegisterTransfer";
 
 const usersData = [{ uid: "123" }, { uid: "3463" }, { uid: "2366" }];
 
 function Transfer() {
   const [boxError, setBoxError] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
+  const { register, handleSubmit, formState } = useForm();
+  const { errors } = formState;
+  const { handleImageChange, setSelectedFile, selectedFile } = usePreviewImg();
+  const { isRegistering, registerNewTransfer } = useRegisterTransfer();
 
   // Function to handle changes in the selected user
   const handleUserSelection = (e) => {
@@ -15,9 +20,7 @@ function Transfer() {
 
     setSelectedUser(selectedUserId);
   };
-  const { register, handleSubmit, formState } = useForm();
-  const { errors } = formState;
-  const { handleImageChange, setSelectedFile, selectedFile } = usePreviewImg();
+
   // console.log(errors.length);
   function onSubmit({ ...inputs }) {
     console.log(inputs);
@@ -29,15 +32,15 @@ function Transfer() {
       setBoxError(null);
     }
     const transferData = {
-      user: "Polina Shaban",
       title: inputs.title,
       description: inputs.description || "",
-      total: inputs.amount,
+      total: +inputs.amount,
       img: selectedFile || null,
       type: "transfer",
       recipient: user,
     };
     console.log(transferData);
+    registerNewTransfer(transferData);
   }
 
   return (
@@ -111,7 +114,7 @@ function Transfer() {
               className="radio radio-lg radio-accent"
             />
             <div className="avatar flex items-center gap-4">
-              <div className=" w-16 rounded-full  ">
+              <div className=" w-12 rounded-full  ">
                 <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
               </div>
               <span className="text-2xl font-bold">User Name</span>
@@ -153,7 +156,13 @@ function Transfer() {
           />
         </label>
 
-        <button className="btn btn-accent w-full mt-8">Submit</button>
+        {isRegistering ? (
+          <button className="btn btn-accent w-full mt-8" disabled>
+            <span className="loading loading-spinner loading-xs"></span>
+          </button>
+        ) : (
+          <button className="btn btn-accent w-full mt-8">Send Transfer </button>
+        )}
       </form>
     </section>
   );
