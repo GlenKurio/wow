@@ -1,12 +1,14 @@
 import { useState } from "react";
 import Expense from "../../components/appComponents/appNewTransaction/Expense";
 import Transfer from "../../components/appComponents/appNewTransaction/Transfer";
+import MoveBackButton from "../../components/MoveBackButton";
 
 function RegisterTransaction() {
   const [isExpense, setIsExpense] = useState(true);
 
   return (
-    <main className="p-4">
+    <main className="px-4 pb-8">
+      <MoveBackButton />
       <div className="join grid grid-cols-2">
         <button
           className={

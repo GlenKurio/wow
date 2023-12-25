@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import AvatarGroup from "./AvatarGroup";
 
 const transactions = [
@@ -219,9 +220,12 @@ function TransactionsTable({ users }) {
                   )}
                 </td>
                 <th>
-                  <button className="btn btn-ghost btn-xs text-accent">
+                  <Link
+                    to={`transaction-details/${idx}`}
+                    className="btn btn-ghost btn-xs text-accent"
+                  >
                     details
-                  </button>
+                  </Link>
                 </th>
               </tr>
             ))}

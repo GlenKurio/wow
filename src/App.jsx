@@ -9,6 +9,7 @@ import AppLayout from "./components/layouts/appLayout/AppLayout";
 import AppHome from "./pages/app/AppHome";
 import RootRoute from "./pages/RootRoute";
 import RegisterTransaction from "./pages/app/RegisterTransaction";
+import TransactionDetails from "./pages/app/TransactionDetails";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -35,6 +36,10 @@ function App() {
                 <Route
                   path="new-transaction"
                   element={<RegisterTransaction />}
+                />
+                <Route
+                  path="transaction-details/:id"
+                  element={<TransactionDetails />}
                 />
               </Route>
             </Route>
