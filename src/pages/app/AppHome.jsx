@@ -29,24 +29,6 @@ const users = [
     balanceWithPolina: 300,
     transactions: 10,
   },
-  {
-    uid: 3,
-    fullName: "Vita Minko",
-    avatar: "/avatars/vita.png",
-    balanceWithCurrentUser: 200,
-    balanceWithOleh: -100,
-    balanceWithPolina: 300,
-    transactions: 10,
-  },
-  {
-    uid: 3,
-    fullName: "Vita Minko",
-    avatar: "/avatars/vita.png",
-    balanceWithCurrentUser: 200,
-    balanceWithOleh: -100,
-    balanceWithPolina: 300,
-    transactions: 10,
-  },
 ];
 function AppHome() {
   return (

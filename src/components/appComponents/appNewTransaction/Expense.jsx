@@ -2,17 +2,19 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useState } from "react";
 import usePreviewImg from "../../../hooks/usePreviewImg";
+import { useRegisterExpense } from "../../../hooks/useRegisterExpense";
 
-//TODO: finish form
 const usersData = [{ uid: "123" }, { uid: "3463" }, { uid: "2366" }];
 
 function Expense() {
+  const { isRegistering, registerNewExpense } = useRegisterExpense();
   const [boxError, setBoxError] = useState(null);
-  const { register, handleSubmit, formState } = useForm();
+  const { register, handleSubmit, formState, reset } = useForm();
   const { errors } = formState;
   const { handleImageChange, setSelectedFile, selectedFile } = usePreviewImg();
   // console.log(errors.length);
-  function onSubmit({ ...inputs }) {
+
+  function onSubmit(inputs) {
     console.log(inputs);
     let users = [];
 
@@ -25,16 +27,21 @@ function Expense() {
     } else {
       setBoxError(null);
     }
-    const expenseData = {
-      user: "Polina Shaban",
+    const expense = {
       title: inputs.title,
       description: inputs.description || "",
-      total: inputs.amount,
-      img: selectedFile || null,
+      total: +inputs.amount,
       type: "expense",
+      img: selectedFile || null,
       participants: users,
     };
-    console.log(expenseData);
+    console.log(expense);
+
+    registerNewExpense(expense, {
+      onSuccess: (inputs) => {
+        reset();
+      },
+    });
   }
 
   return (
@@ -104,7 +111,7 @@ function Expense() {
               {...register(`${user.uid}`)}
               type="checkbox"
               defaultChecked="checked"
-              className="checkbox checkbox-lg"
+              className="checkbox checkbox-lg checkbox-accent"
             />
             <div className="avatar flex items-center gap-4">
               <div className=" w-16 rounded-full  ">

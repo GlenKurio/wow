@@ -58,7 +58,7 @@ function Transfer() {
           <input
             {...register("amount", { required: "This field is required" })}
             type="number"
-            placeholder="Amount of expense"
+            placeholder="Amount of transfer"
             className={
               errors?.amount?.message
                 ? " input input-bordered input-error w-full max-w-[30rem]"
@@ -80,7 +80,7 @@ function Transfer() {
           <input
             {...register("title", { required: "This field is required" })}
             type="text"
-            placeholder="Title of expense"
+            placeholder="Title of transfer"
             className={
               errors?.title?.message
                 ? " input input-bordered input-error w-full max-w-[30rem]"
@@ -108,7 +108,7 @@ function Transfer() {
               value={user.uid}
               checked={selectedUser === user.uid}
               onChange={handleUserSelection}
-              className="radio radio-lg"
+              className="radio radio-lg radio-accent"
             />
             <div className="avatar flex items-center gap-4">
               <div className=" w-16 rounded-full  ">
@@ -133,7 +133,7 @@ function Transfer() {
           <textarea
             {...register("description")}
             type="text"
-            placeholder="Description of expense"
+            placeholder="Description of transfer"
             className="textarea textarea-bordered w-full max-w-[30rem] h-24"
           />
         </label>
@@ -148,7 +148,6 @@ function Transfer() {
           </div>
           <input
             type="file"
-            placeholder="Description of expense"
             className="file-input file-input-bordered w-full max-w-[30rem] "
             onChange={handleImageChange}
           />
