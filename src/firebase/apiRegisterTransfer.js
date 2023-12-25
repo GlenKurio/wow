@@ -6,7 +6,7 @@ import { getDownloadURL, ref, uploadString } from "firebase/storage";
 export default async function registerExpense(transfer) {
   const transferDoc = {
     ...transfer,
-    user: null,
+    author: null,
     createdAt: Date.now(),
   };
 

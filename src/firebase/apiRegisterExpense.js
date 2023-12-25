@@ -5,7 +5,7 @@ import { getDownloadURL, ref, uploadString } from "firebase/storage";
 export default async function registerExpense(expense) {
   const expenseDoc = {
     ...expense,
-    user: null,
+    author: null,
     createdAt: Date.now(),
   };
 

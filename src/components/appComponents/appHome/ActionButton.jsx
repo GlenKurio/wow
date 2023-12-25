@@ -5,7 +5,7 @@ function ActionButton() {
     <div className="px-4 fixed left-0 bottom-4 z-20 w-full">
       <Link
         to="new-transaction"
-        className="btn rounded-full btn-accent text-accent-content  shadow-xl capitalize text-lg btn-block "
+        className="btn  btn-accent text-accent-content  shadow-xl capitalize text-lg btn-block "
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

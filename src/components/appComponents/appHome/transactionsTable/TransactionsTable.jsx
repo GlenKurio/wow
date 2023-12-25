@@ -118,7 +118,7 @@ const transactions = [
 
 function TransactionsTable({ users }) {
   const transactionTypes = {
-    transfer: "text-success ",
+    transfer: "text-warning ",
     expense: "text-error",
   };
   function getUserInfo(transaction) {
