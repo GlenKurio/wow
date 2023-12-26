@@ -5,7 +5,9 @@ function ProtectedRoute({ children }) {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen grid place-content-center">Loading...</div>
+      <div className="min-h-screen grid place-content-center">
+        <span className="loading loading-dots loading-lg loading-accent"></span>
+      </div>
     );
   }
 

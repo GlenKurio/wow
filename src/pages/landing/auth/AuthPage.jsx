@@ -17,7 +17,7 @@ function AuthPage() {
         </div>
         {isLogin ? <Login /> : <Signup />}
         <div>
-          <div className="divider">OR</div>
+          <div className="divider select-none">OR</div>
           <GoogleAuth prefix={isLogin ? "Log In" : "Sign Up"} />
         </div>
 
@@ -27,7 +27,7 @@ function AuthPage() {
             {isLogin ? "Dont`t have an account ?" : "Already have an account ?"}
           </p>
           <button
-            className="btn btn-link text-accent"
+            className="btn btn-link text-accent select-none"
             onClick={() => setIsLogin((prev) => !prev)}
           >
             {isLogin ? "Sign Up" : "Log In"}
