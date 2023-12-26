@@ -8,8 +8,7 @@ export function useGoogleAuth() {
   const navigate = useNavigate();
   const { mutate: authWithGoogle, isLoading } = useMutation({
     mutationFn: () => apiAuthWithGoogle(),
-    onSuccess: (userDoc) => {
-      queryClient.setQueryData(["user"], userDoc.uid);
+    onSuccess: () => {
       toast.success("Welcome!");
       navigate("/app");
     },

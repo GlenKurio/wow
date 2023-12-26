@@ -1,7 +1,18 @@
 import { Link } from "react-router-dom";
 import ThemeController from "../landingLayout/ThemeController";
 
+import { auth } from "../../../firebase/firebase";
+import { signOut } from "firebase/auth";
+
 function AppNav() {
+  async function handleLogout() {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+
   return (
     <div className="navbar bg-base-300 shadow-md">
       <div className="flex-1">
@@ -35,7 +46,7 @@ function AppNav() {
               <a>Settings</a>
             </li>
             <li>
-              <a>Logout</a>
+              <a onClick={handleLogout}>Logout</a>
             </li>
           </ul>
         </div>

@@ -55,7 +55,7 @@ function LandingNav() {
       </div>
       <div className="navbar-end flex gap-8">
         <ThemeController />
-        <Link to="/auth" className=" btn btn-accent font-bold">
+        <Link to="/app" className=" btn btn-accent font-bold">
           Use App
         </Link>
       </div>

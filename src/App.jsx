@@ -10,6 +10,7 @@ import AppHome from "./pages/app/AppHome";
 import RootRoute from "./pages/RootRoute";
 import RegisterTransaction from "./pages/app/RegisterTransaction";
 import TransactionDetails from "./pages/app/TransactionDetails";
+import ProtectedRoute from "./components/layouts/appLayout/ProtectedRoute";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -31,7 +32,14 @@ function App() {
                 <Route index element={<HomePage />} />
                 <Route path="auth" element={<AuthPage />} />
               </Route>
-              <Route path="app" element={<AppLayout />}>
+              <Route
+                path="app"
+                element={
+                  <ProtectedRoute>
+                    <AppLayout />
+                  </ProtectedRoute>
+                }
+              >
                 <Route index element={<AppHome />} />
                 <Route
                   path="new-transaction"

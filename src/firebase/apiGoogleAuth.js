@@ -18,7 +18,7 @@ export async function authWithGoogle() {
     if (userSnap.exists()) {
       // Login
       userDoc = userSnap.data();
-      localStorage.setItem(JSON.stringify(userDoc));
+      //   localStorage.setItem(JSON.stringify(userDoc));
     } else {
       //signup
       userDoc = {
@@ -31,7 +31,7 @@ export async function authWithGoogle() {
       };
 
       await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
-      localStorage.setItem(JSON.stringify(userDoc));
+      //   localStorage.setItem(JSON.stringify(userDoc));
     }
   } catch (e) {
     throw new Error(e.message);
