@@ -69,7 +69,7 @@ function Login() {
             }
           />
           <div
-            className="absolute right-2 bottom-[12px] cursor-pointer z-10"
+            className="absolute right-2 bottom-[12px] cursor-pointer z-10 text-accent"
             onClick={() => setShowPass((prev) => !prev)}
           >
             {showPass ? (
@@ -112,7 +112,7 @@ function Login() {
         </label>
         {isLoading ? (
           <button className="btn btn-accent w-full mt-8">
-            <span className="loading loading-spinner loading-xs"></span>{" "}
+            <span className="loading loading-spinner loading-xs"></span>
           </button>
         ) : (
           <button className="btn btn-accent w-full mt-8">Login</button>

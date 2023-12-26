@@ -36,6 +36,6 @@ export async function authWithGoogle() {
   } catch (e) {
     throw new Error(e.message);
   }
-  console.log(userDoc);
+
   return userDoc;
 }
