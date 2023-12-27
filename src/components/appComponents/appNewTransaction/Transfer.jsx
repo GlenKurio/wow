@@ -127,11 +127,6 @@ function Transfer() {
             <span className="label-text text-lg font-semibold">
               Description
             </span>
-            {errors?.amount?.message && (
-              <span className="label-text-alt hidden text-error">
-                {errors.amount.message}
-              </span>
-            )}
           </div>
           <textarea
             {...register("description")}
@@ -143,11 +138,6 @@ function Transfer() {
         <label className="form-control w-full max-w-[30rem]">
           <div className="label">
             <span className="label-text text-lg font-semibold">Image</span>
-            {errors?.amount?.message && (
-              <span className="label-text-alt hidden text-error">
-                {errors.amount.message}
-              </span>
-            )}
           </div>
           <input
             type="file"

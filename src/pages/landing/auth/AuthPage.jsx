@@ -3,6 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import GoogleAuth from "../../../components/appComponents/auth/GoogleAuth";
 import Login from "../../../components/appComponents/auth/Login";
 import Signup from "../../../components/appComponents/auth/SignUp";
+import FacebookAuth from "../../../components/appComponents/auth/FacebookAuth";
 
 function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);

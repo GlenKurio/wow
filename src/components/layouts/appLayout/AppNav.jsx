@@ -3,8 +3,22 @@ import ThemeController from "../landingLayout/ThemeController";
 
 import { auth } from "../../../firebase/firebase";
 import { signOut } from "firebase/auth";
+import { useCurrentUserData } from "../../../hooks/useGetCurrentUserData";
 
 function AppNav() {
+  //TODO: Get user data to display in nav; Add Edit profile Page
+  const { isLoading, currentUserData, error } = useCurrentUserData();
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen grid place-content-center">
+        <span className="loading loading-dots loading-lg loading-accent"></span>
+      </div>
+    );
+  }
+
+  const firstName = currentUserData.fullName.split(" ")[0];
+
   async function handleLogout() {
     try {
       await signOut(auth);
@@ -30,23 +44,29 @@ function AppNav() {
           >
             <div className="w-10 rounded-full">
               <img
-                alt="Tailwind CSS Navbar component"
-                src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                alt={`The profile picture of ${currentUserData.fullName}`}
+                src={currentUserData.profilePicURL || "/avatar-placeholder.png"}
               />
             </div>
           </div>
+
           <ul
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52 "
           >
+            <h3 className="text-xl font-semibold text-center mb-2">
+              Hello, {firstName}
+            </h3>
             <li>
-              <a className="justify-between">Edit Profile</a>
+              <Link to="edit-profile" className="justify-between">
+                Edit Profile
+              </Link>
             </li>
             <li>
               <a>Settings</a>
             </li>
             <li>
-              <a onClick={handleLogout}>Logout</a>
+              <Link onClick={handleLogout}>Logout</Link>
             </li>
           </ul>
         </div>

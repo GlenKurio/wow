@@ -36,12 +36,12 @@ function AppHome() {
     <main className="relative pb-16">
       <ActionButton />
 
-      <h2 className="px-6 text-2xl font-bold  uppercase tracking-[1px]  mt-8 mb-4">
-        Your balances:
+      <h2 className="px-6 text-2xl text-accent font-bold  capitalize tracking-[1px]  mt-8 mb-4">
+        Your balances
       </h2>
       <AllUsers users={users} />
-      <h2 className="px-6 text-2xl font-bold  uppercase tracking-[1px] mt-16 mb-4">
-        Transactions:
+      <h2 className="px-6 text-2xl text-accent font-bold  capitalize tracking-[1px] mt-16 mb-4">
+        Transactions
       </h2>
       <TransactionsTable users={users} />
     </main>

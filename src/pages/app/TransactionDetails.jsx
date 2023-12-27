@@ -19,9 +19,9 @@ function TransactionDetails() {
   const { id } = useParams();
 
   return (
-    <main className="min-h-screen px-4 pb-8">
+    <main className="min-h-screen px-4 pb-16">
       {currUser === transaction.author ? (
-        <div className="px-4 fixed bottom-2 left-0 w-full">
+        <div className="px-4 fixed bottom-2 left-0 w-full z-20">
           <button className="btn btn-accent w-full  flex items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -42,78 +42,93 @@ function TransactionDetails() {
         </div>
       ) : null}
       <MoveBackButton />
-      <h1 className="text-2xl font-bold my-4 uppercase text-center">
+      <h1 className="text-2xl font-bold mb-8 capitalize text-accent">
         Transaction Details
       </h1>
-      <section className="flex flex-col text-xl text-center">
-        <div className="text-xl font-semibold flex  flex-col ">
-          <div className="flex flex-col gap-2">
-            <span>Transaction id:</span>
+      <section className="flex flex-col text-xl gap-8">
+        <div className="text-xl font-semibold flex  flex-col gap-4">
+          <div className="flex gap-2 ">
+            <span className="border-b-[1px] border-accent">
+              Transaction id:
+            </span>
             <span>{id}</span>
           </div>
-          <div className="flex flex-col gap-2">
-            <span>Transaction type: </span>
+          <div className="flex  gap-2">
+            <span className="border-b-[1px] border-accent">
+              Transaction type:{" "}
+            </span>
             <span
               className={
                 transaction.type === "transfer"
-                  ? "text-warning-content bg-warning px-4 py-1 rounded-full text-sm max-w-[150px] mx-auto"
-                  : " text-error-content bg-error px-4 py-1 rounded-full text-sm max-w-[150px] mx-auto "
+                  ? "text-warning-content bg-warning px-4 py-1 rounded-full text-sm max-w-[150px] "
+                  : " text-error-content bg-error px-4 py-1 rounded-full text-sm max-w-[150px]  "
               }
             >
               {transaction.type}
             </span>
           </div>
         </div>
-        <div className="flex flex-col gap-4 border-b-[1px] border-accent py-8 justify-center">
-          <p className=" text-accent  font-bold capitalize">
+        <div className="flex flex-col  justify-center ">
+          <p className=" text-accent  font-bold capitalize ">
             Transaction author
           </p>
-          <figure className="flex items-center gap-8 justify-center">
-            <div className="avatar">
-              <div className="w-16 rounded-full">
-                <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+          <div className="py-2 border-b-[1px] border-accent ">
+            <figure className="flex items-center gap-8 ">
+              <div className="avatar">
+                <div className="w-16 rounded-full">
+                  <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                </div>
               </div>
-            </div>
-            <figcaption className="text-2xl font-semibold">
-              {" "}
-              User Name
-            </figcaption>
-          </figure>
+              <figcaption className="text-2xl "> User Name</figcaption>
+            </figure>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 border-b-[1px] border-accent py-8">
-          <p className=" text-accent  font-bold capitalize">
+        <div className="flex flex-col ">
+          <p className=" text-accent  font-bold capitalize ">
             Transaction title
           </p>
-          <p className="text-2xl font-semibold">{transaction.title}</p>
+          <div className="border-b-[1px] border-accent py-2">
+            <p className="text-2xl ">{transaction.title}</p>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 border-b-[1px] border-accent py-8">
-          <p className="text-accent  font-bold capitalize">Transaction Total</p>
-          <p className="text-2xl font-semibold">${transaction.total}</p>
+        <div className="flex flex-col">
+          <p className="text-accent  font-bold capitalize ">
+            Transaction Total
+          </p>
+          <div className="border-b-[1px] border-accent py-2">
+            <p className="text-2xl ">${transaction.total}</p>
+          </div>
         </div>
         {/* TODO: get participants fullName & Avataars */}
-        <div className="flex flex-col gap-4 border-b-[1px] border-accent py-8">
+        <div className="flex flex-col  ">
           {transaction.type === "transfer" ? (
             <p className=" text-accent  font-bold capitalize">Transfer to</p>
           ) : (
             <p className=" text-accent p-1 font-bold capitalize">Split with:</p>
           )}
-          {transaction.participants}
+          <div className="py-2 border-b-[1px] border-accent">
+            {transaction.participants}
+          </div>
         </div>
-        <div className="flex flex-col gap-4 border-b-[1px] border-accent py-8">
+        <div className="flex flex-col">
           <p className=" text-accent  font-bold capitalize">
             Transaction Description
           </p>
-          <p className="text-2xl font-semibold">{transaction.description}</p>
+          <div className="border-b-[1px] border-accent py-2">
+            <p className="text-2xl">{transaction.description}</p>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 border-b-[1px] border-accent py-8">
+        <div className="flex flex-col ">
           <p className=" text-accent font-bold capitalize">Image</p>
-          {transaction.img ? (
-            <figure>
-              <img src={transaction.img} alt="" />
-            </figure>
-          ) : (
-            <p>No image with this transaction</p>
-          )}
+          <div className="border-b-[1px] border-accent py-2">
+            {transaction.img ? (
+              <figure>
+                <img src={transaction.img} alt="" />
+              </figure>
+            ) : (
+              <p>No image with this transaction</p>
+            )}
+          </div>
         </div>
       </section>
     </main>

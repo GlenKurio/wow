@@ -11,6 +11,7 @@ import RootRoute from "./pages/RootRoute";
 import RegisterTransaction from "./pages/app/RegisterTransaction";
 import TransactionDetails from "./pages/app/TransactionDetails";
 import ProtectedRoute from "./components/layouts/appLayout/ProtectedRoute";
+import EditProfile from "./pages/app/EditProfile";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,52 +23,48 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
-    <>
-      <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen={false} />
-        <BrowserRouter>
-          <Routes>
-            <Route element={<RootRoute />}>
-              <Route path="/" element={<LandingLayout />}>
-                <Route index element={<HomePage />} />
-                <Route path="auth" element={<AuthPage />} />
-              </Route>
-              <Route
-                path="app"
-                element={
-                  <ProtectedRoute>
-                    <AppLayout />
-                  </ProtectedRoute>
-                }
-              >
-                <Route index element={<AppHome />} />
-                <Route
-                  path="new-transaction"
-                  element={<RegisterTransaction />}
-                />
-                <Route
-                  path="transaction-details/:id"
-                  element={<TransactionDetails />}
-                />
-              </Route>
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <BrowserRouter>
+        <Routes>
+          <Route element={<RootRoute />}>
+            <Route path="/" element={<LandingLayout />}>
+              <Route index element={<HomePage />} />
+              <Route path="auth" element={<AuthPage />} />
             </Route>
-          </Routes>
-        </BrowserRouter>
-        <Toaster
-          position="top-center"
-          gutter={12}
-          containerStyle={{ margin: "4px" }}
-          toastOptions={{
-            success: {
-              duration: 3000,
-            },
-            error: {
-              duration: 3000,
-            },
-          }}
-        />
-      </QueryClientProvider>
-    </>
+            <Route
+              path="app"
+              element={
+                <ProtectedRoute>
+                  <AppLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<AppHome />} />
+              <Route path="edit-profile" element={<EditProfile />} />
+              <Route path="new-transaction" element={<RegisterTransaction />} />
+              <Route
+                path="transaction-details/:id"
+                element={<TransactionDetails />}
+              />
+            </Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
+      <Toaster
+        position="top-center"
+        gutter={12}
+        containerStyle={{ margin: "4px" }}
+        toastOptions={{
+          success: {
+            duration: 3000,
+          },
+          error: {
+            duration: 3000,
+          },
+        }}
+      />
+    </QueryClientProvider>
   );
 }
 
