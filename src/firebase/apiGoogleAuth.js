@@ -24,7 +24,16 @@ export async function authWithGoogle({ roomId }) {
 
     const userRef = doc(firestore, "users", newUser.user.uid);
     const userSnap = await getDoc(userRef);
-
+    const uniqueId = uuidv4();
+    userDoc = {
+      uid: newUser.user.uid,
+      email: newUser.user.email,
+      fullName: newUser.user.displayName,
+      profilePicURL: newUser.user.photoURL,
+      createdAt: Date.now(),
+      totalTransactions: 0,
+      roomId: uniqueId,
+    };
     if (userSnap.exists()) {
       // Login
       userDoc = userSnap.data();
@@ -56,21 +65,12 @@ export async function authWithGoogle({ roomId }) {
       const userInTheRoomUID = usersInTheRoom.map((user) => user.uid);
       userDoc = {
         ...userDoc,
-        [userInTheRoomUID]: 0, // Dynamic field name and value
+        [userInTheRoomUID]: 0,
+        roomId: roomId, // Dynamic field name and value
       };
       await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
     } else {
       // signup with new doc
-      const uniqueId = uuidv4();
-      userDoc = {
-        uid: newUser.user.uid,
-        email: newUser.user.email,
-        fullName: newUser.user.displayName,
-        profilePicURL: newUser.user.photoURL,
-        createdAt: Date.now(),
-        totalTransactions: 0,
-        roomId: uniqueId,
-      };
 
       await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
       //   localStorage.setItem(JSON.stringify(userDoc));
