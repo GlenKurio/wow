@@ -1,6 +1,6 @@
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 
-import { signUpWithEmailAndPassword } from "../firebase/apiSignUp";
+import { signUpWithEmailAndPassword } from "../firebase/apiSignup";
 
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
