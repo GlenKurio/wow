@@ -7,7 +7,7 @@ function UserCard({ user }) {
   console.log(user);
   const balance = user[currentUserUid];
   const firstName = user.fullName.split(" ")[0];
-
+  console.log("balance:", balance);
   function balanceStatus(balance) {
     let status;
     if (balance == 0) return (status = "even");
@@ -30,7 +30,7 @@ function UserCard({ user }) {
         <div className="stat">
           <div className="avatar ">
             <div className="w-20 h-20 rounded-full">
-              <img src={user.avatar} />
+              <img src={user.profilePicURL} />
             </div>
           </div>
         </div>
@@ -39,26 +39,26 @@ function UserCard({ user }) {
             Balance with <span className="font-semibold">{user.fullName}</span>
           </div>
           <div className={`stat-value ${balanceStatusVariants[status]}`}>
-            {user.balanceWithCurrentUser}$
+            {balance}$
           </div>
           <div className={`stat-desc ${balanceStatusVariants[status]}`}>
             {status === "even"
               ? `You and ${firstName} are even`
               : status === "owe"
-              ? `You owe ${firstName} ${user.balanceWithCurrentUser} CAD`
+              ? `You owe ${firstName} ${balance} CAD`
               : status === "owes"
-              ? ` ${firstName} owes you ${user.balanceWithCurrentUser} CAD`
+              ? ` ${firstName} owes you ${balance} CAD`
               : null}
           </div>
         </div>
         <div className="stat">
           <div className="stat-title">Total Transactions This Month</div>
-          <div className="stat-value">{user.transactions}</div>
+          <div className="stat-value">{user.totalTransactions}</div>
           <div className="stat-desc">21% more than last month</div>
         </div>
         <div className="stat">
           <div className="stat-title">Total Transactions Amount This Month</div>
-          <div className="stat-value">{user.transactions}</div>
+          <div className="stat-value">{user.totalTransactions}</div>
           <div className="stat-desc">21% more than last month</div>
         </div>
       </div>
