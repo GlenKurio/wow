@@ -12,8 +12,8 @@ export function useSignup() {
   const { mutate: signup, isLoading } = useMutation({
     mutationFn: ({ fullName, email, password }) =>
       signUpWithEmailAndPassword({ fullName, email, password }),
-    onSuccess: (userDoc) => {
-      queryClient.setQueryData(["user-data"]);
+    onSuccess: ({ userDoc }) => {
+      queryClient.setQueryData(["user-data"], userDoc);
       navigate("/app", { replace: true });
     },
 
