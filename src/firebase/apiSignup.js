@@ -1,6 +1,8 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, firestore } from "./firebase";
 import { doc, setDoc } from "firebase/firestore";
+import { v4 as uuidv4 } from "uuid";
+
 export async function signUpWithEmailAndPassword({
   fullName,
   email,
@@ -13,6 +15,7 @@ export async function signUpWithEmailAndPassword({
     if (!newUser) {
       throw new Error("Failed to create user");
     }
+    const uniqueId = uuidv4();
 
     userDoc = {
       uid: newUser.user.uid,
@@ -21,6 +24,7 @@ export async function signUpWithEmailAndPassword({
       profilePicURL: "",
       createdAt: Date.now(),
       totalTransactions: 0,
+      roomId: uniqueId,
     };
 
     await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);

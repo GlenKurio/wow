@@ -1,7 +1,7 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth, firestore } from "./firebase";
 import { doc, setDoc, getDoc } from "firebase/firestore";
-
+import { v4 as uuidv4 } from "uuid";
 const provider = new GoogleAuthProvider();
 
 export async function authWithGoogle() {
@@ -21,6 +21,7 @@ export async function authWithGoogle() {
       //   localStorage.setItem(JSON.stringify(userDoc));
     } else {
       //signup
+      const uniqueId = uuidv4();
       userDoc = {
         uid: newUser.user.uid,
         email: newUser.user.email,
@@ -28,6 +29,7 @@ export async function authWithGoogle() {
         profilePicURL: newUser.user.photoURL,
         createdAt: Date.now(),
         totalTransactions: 0,
+        roomId: uniqueId,
       };
 
       await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
