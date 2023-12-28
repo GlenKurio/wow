@@ -7,6 +7,7 @@ export async function signUpWithEmailAndPassword({
   fullName,
   email,
   password,
+  roomId,
 }) {
   let userDoc;
   try {
@@ -24,7 +25,7 @@ export async function signUpWithEmailAndPassword({
       profilePicURL: "",
       createdAt: Date.now(),
       totalTransactions: 0,
-      roomId: uniqueId,
+      roomId: roomId || uniqueId,
     };
 
     await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);

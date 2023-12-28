@@ -7,7 +7,7 @@ export function useGoogleAuth() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { mutate: authWithGoogle, isLoading } = useMutation({
-    mutationFn: () => apiAuthWithGoogle(),
+    mutationFn: ({ roomId }) => apiAuthWithGoogle({ roomId }),
     onSuccess: (userDoc) => {
       queryClient.setQueryData(["user-data"], userDoc);
       toast.success("Welcome!");

@@ -1,6 +1,6 @@
-function InviteUser() {
+function InviteUser({ roomId }) {
   // Assuming invitationLink contains the generated link
-  const roomId = "12412casf";
+
   const invitationLink = `https://who-owes-whom.netlify.app/auth?room=${roomId}`;
   function sendInvitationByEmail() {
     const subject = encodeURIComponent("Join My Room");

@@ -2,8 +2,7 @@ import { toast } from "react-hot-toast";
 
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
-function CopyInvitationLink() {
-  const roomId = "12412casf";
+function CopyInvitationLink({ roomId }) {
   const invitationLink = `https://who-owes-whom.netlify.app/auth?room=${roomId}`;
   return (
     <div className="">

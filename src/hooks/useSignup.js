@@ -10,8 +10,8 @@ export function useSignup() {
   const navigate = useNavigate();
 
   const { mutate: signup, isLoading } = useMutation({
-    mutationFn: ({ fullName, email, password }) =>
-      signUpWithEmailAndPassword({ fullName, email, password }),
+    mutationFn: ({ fullName, email, password, roomId }) =>
+      signUpWithEmailAndPassword({ fullName, email, password, roomId }),
     onSuccess: ({ userDoc }) => {
       queryClient.setQueryData(["user-data"], userDoc);
       navigate("/app", { replace: true });

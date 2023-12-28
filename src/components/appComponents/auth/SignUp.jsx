@@ -2,14 +2,14 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useSignup } from "../../../hooks/useSignup";
 
-function Signup() {
+function Signup({ roomId }) {
   const { register, formState, reset, handleSubmit, getValues } = useForm();
   const { errors } = formState;
 
   const [showPass, setShowPass] = useState(false);
   const { isLoading, signup } = useSignup();
   function onSubmit({ fullName, email, password }) {
-    signup({ fullName, email, password });
+    signup({ fullName, email, password, roomId });
   }
   return (
     <section>
