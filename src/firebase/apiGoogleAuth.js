@@ -1,6 +1,15 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth, firestore } from "./firebase";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import {
+  doc,
+  setDoc,
+  getDoc,
+  getDocs,
+  collection,
+  where,
+  query,
+  writeBatch,
+} from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 const provider = new GoogleAuthProvider();
 
@@ -20,8 +29,38 @@ export async function authWithGoogle({ roomId }) {
       // Login
       userDoc = userSnap.data();
       //   localStorage.setItem(JSON.stringify(userDoc));
+    } else if (roomId) {
+      //signup and update docs for all users
+      // getAll users in the room
+      let usersInTheRoom = [];
+
+      const q = query(
+        collection(firestore, "users"),
+        where("roomId", "==", roomId)
+      );
+
+      const querySnap = await getDocs(q);
+      querySnap.forEach((doc) => {
+        usersInTheRoom.push({ ...doc.data() });
+      });
+      // add a uid row into each userDoc in the room with cuurently signin up user UID ('signingUpUserUID': 0)
+      const batch = writeBatch(firestore);
+      usersInTheRoom.forEach((user) => {
+        const fieldName = user.uid; // Field name from user.uid
+        const userRef = doc(firestore, "users", user.uid);
+        batch.update(userRef, { [fieldName]: 0 });
+      });
+      await batch.commit();
+
+      // add a uids of all users into currently signing up user doc ('userInTheRoomUID': 0)
+      const userInTheRoomUID = usersInTheRoom.map((user) => user.uid);
+      userDoc = {
+        ...userDoc,
+        [userInTheRoomUID]: 0, // Dynamic field name and value
+      };
+      await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
     } else {
-      //signup
+      // signup with new doc
       const uniqueId = uuidv4();
       userDoc = {
         uid: newUser.user.uid,
@@ -30,7 +69,7 @@ export async function authWithGoogle({ roomId }) {
         profilePicURL: newUser.user.photoURL,
         createdAt: Date.now(),
         totalTransactions: 0,
-        roomId: roomId || uniqueId,
+        roomId: uniqueId,
       };
 
       await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);

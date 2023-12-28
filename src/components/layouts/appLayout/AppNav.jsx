@@ -3,20 +3,8 @@ import ThemeController from "../landingLayout/ThemeController";
 
 import { auth } from "../../../firebase/firebase";
 import { signOut } from "firebase/auth";
-import { useCurrentUserData } from "../../../hooks/useGetCurrentUserData";
 
-function AppNav() {
-  //TODO: Get user data to display in nav; Add Edit profile Page
-  const { isLoading, currentUserData, error } = useCurrentUserData();
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen grid place-content-center">
-        <span className="loading loading-dots loading-lg loading-accent"></span>
-      </div>
-    );
-  }
-
+function AppNav({ currentUserData }) {
   const firstName = currentUserData.fullName.split(" ")[0];
 
   async function handleLogout() {

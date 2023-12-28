@@ -1,5 +1,11 @@
+import { useCurrentUserData } from "../../../hooks/useGetCurrentUserData";
+
 function UserCard({ user }) {
-  const balance = user.balanceWithCurrentUser;
+  //TODO: show balance with currentUser
+  const { currentUserData } = useCurrentUserData();
+  const currentUserUid = currentUserData.uid;
+  console.log(user);
+  const balance = user[currentUserUid];
   const firstName = user.fullName.split(" ")[0];
 
   function balanceStatus(balance) {

@@ -115,7 +115,7 @@ const transactions = [
     participants: ["", ""],
   },
 ];
-
+// TODO: get all transactions form room
 function TransactionsTable({ users }) {
   const transactionTypes = {
     transfer: "text-warning ",

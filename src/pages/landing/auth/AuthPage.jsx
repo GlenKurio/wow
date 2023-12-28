@@ -10,7 +10,7 @@ function AuthPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const roomId = searchParams.get("room");
   console.log(roomId);
-  //TODO: Pass room id into google auth and add it to user doc
+  //TODO: Add ner row "balance with user" to all users in the room with and ID of new signedup user, and add rows with all users balances to a new user
   return (
     <main className="min-h-screen px-4">
       <section className="w-full">
