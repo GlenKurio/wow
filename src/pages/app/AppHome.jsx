@@ -17,6 +17,7 @@ function AppHome() {
     );
   }
   console.log(users);
+  //TODO: Get transactions for transactions table with pagination
   return (
     <main className="relative pb-16">
       <ActionButton />
@@ -28,6 +29,7 @@ function AppHome() {
       <h2 className="px-6 text-2xl text-accent font-bold  capitalize tracking-[1px] mt-16 mb-4">
         Transactions
       </h2>
+
       <TransactionsTable />
     </main>
   );

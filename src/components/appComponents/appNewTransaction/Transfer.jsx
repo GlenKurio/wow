@@ -4,16 +4,17 @@ import { useState } from "react";
 import usePreviewImg from "../../../hooks/usePreviewImg";
 import { useRegisterTransfer } from "../../../hooks/useRegisterTransfer";
 
-const usersData = [{ uid: "123" }, { uid: "3463" }, { uid: "2366" }];
-
-function Transfer() {
+// TODO: finish register transfer
+function Transfer({ users, currentUserData }) {
   const [boxError, setBoxError] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
   const { register, handleSubmit, formState } = useForm();
   const { errors } = formState;
   const { handleImageChange, setSelectedFile, selectedFile } = usePreviewImg();
   const { isRegistering, registerNewTransfer } = useRegisterTransfer();
-
+  const usersToSelect = users.filter(
+    (user) => user.uid !== currentUserData.uid
+  );
   // Function to handle changes in the selected user
   const handleUserSelection = (e) => {
     const selectedUserId = e.target.value;
@@ -38,6 +39,7 @@ function Transfer() {
       img: selectedFile || null,
       type: "transfer",
       recipient: user,
+      author: currentUserData.uid,
     };
     console.log(transferData);
     registerNewTransfer(transferData);
@@ -104,7 +106,7 @@ function Transfer() {
           </div>
         </label>
 
-        {usersData.map((user, idx) => (
+        {usersToSelect.map((user, idx) => (
           <label className="text-xl flex items-center gap-8 " key={idx}>
             <input
               type="radio"
@@ -115,9 +117,9 @@ function Transfer() {
             />
             <div className="avatar flex items-center gap-4">
               <div className=" w-12 rounded-full  ">
-                <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                <img src={user.profilePicURL || "/avatar-placeholder.png"} />
               </div>
-              <span className="text-2xl font-bold">User Name</span>
+              <span className="text-2xl font-bold">{user.fullName}</span>
             </div>
           </label>
         ))}

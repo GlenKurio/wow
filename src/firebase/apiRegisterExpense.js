@@ -12,7 +12,7 @@ import {
 } from "firebase/firestore";
 import { firestore, storage } from "../firebase/firebase";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
-//TODO: update balances with author of transaction for all participants by % of amount based on the number of participants
+
 export default async function registerExpense(expense) {
   const expenseDoc = {
     ...expense,
@@ -24,7 +24,6 @@ export default async function registerExpense(expense) {
   // split total on the number of participants (including current user)
   const total = expenseDoc.total;
   const splittedAmount = Number(total) / (participants.length + 1);
-  console.log(" expense amount for each participant:", splittedAmount);
 
   let URL = "";
 
@@ -47,7 +46,7 @@ export default async function registerExpense(expense) {
 
     participants.map((participant) => {
       const currentFieldValue = authorData[participant];
-      console.log(`current balance with ${participant}`, currentFieldValue);
+
       const updatedValue = Number(currentFieldValue) - Number(splittedAmount);
       authorData = {
         ...authorData,

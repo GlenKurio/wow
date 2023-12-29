@@ -5,7 +5,7 @@ function UserCard({ user }) {
   const { currentUserData } = useCurrentUserData();
   const currentUserUid = currentUserData.uid;
   console.log(user);
-  const balance = user[currentUserUid];
+  const balance = parseInt(user[currentUserUid]);
   const firstName = user.fullName.split(" ")[0];
   console.log("balance:", balance);
   function balanceStatus(balance) {
@@ -30,7 +30,7 @@ function UserCard({ user }) {
         <div className="stat">
           <div className="avatar ">
             <div className="w-20 h-20 rounded-full">
-              <img src={user.profilePicURL} />
+              <img src={user.profilePicURL || "/avatar-placeholder.png"} />
             </div>
           </div>
         </div>
