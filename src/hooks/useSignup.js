@@ -12,7 +12,7 @@ export function useSignup() {
   const { mutate: signup, isLoading } = useMutation({
     mutationFn: ({ fullName, email, password, roomId }) =>
       signUpWithEmailAndPassword({ fullName, email, password, roomId }),
-    onSuccess: ({ userDoc }) => {
+    onSuccess: (userDoc) => {
       queryClient.setQueryData(["user-data"], userDoc);
       navigate("/app", { replace: true });
     },
