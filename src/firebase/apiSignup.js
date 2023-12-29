@@ -39,6 +39,7 @@ export async function signUpWithEmailAndPassword({
       querySnap.forEach((doc) => {
         usersInTheRoom.push(doc.id);
       });
+      console.log("signup - usersInTheRoom:", usersInTheRoom);
       // add a uid row into each userDoc in the room with cuurently signin up user UID ('signingUpUserUID': 0)
       const batch = writeBatch(firestore);
       usersInTheRoom.forEach((user) => {
@@ -56,6 +57,7 @@ export async function signUpWithEmailAndPassword({
           roomId: roomId,
         };
       });
+      console.log("signup- userDoc:", userDoc);
       await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
     } else {
       await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
