@@ -4,15 +4,15 @@ import { useState } from "react";
 import usePreviewImg from "../../../hooks/usePreviewImg";
 import { useRegisterExpense } from "../../../hooks/useRegisterExpense";
 
-const usersData = [{ uid: "123" }, { uid: "3463" }, { uid: "2366" }];
-
-function Expense() {
+function Expense({ users, currentUserData }) {
   const { isRegistering, registerNewExpense } = useRegisterExpense();
   const [boxError, setBoxError] = useState(null);
   const { register, handleSubmit, formState, reset } = useForm();
   const { errors } = formState;
   const { handleImageChange, setSelectedFile, selectedFile } = usePreviewImg();
-
+  const usersToSelect = users.filter(
+    (user) => user.uid !== currentUserData.uid
+  );
   function onSubmit(inputs) {
     let users = [];
 
@@ -32,6 +32,7 @@ function Expense() {
       type: "expense",
       img: selectedFile || null,
       participants: users,
+      author: currentUserData.uid,
     };
 
     registerNewExpense(expense, {
@@ -102,7 +103,7 @@ function Expense() {
           </div>
         </label>
 
-        {usersData.map((user, idx) => (
+        {usersToSelect.map((user, idx) => (
           <label className="text-xl flex items-center gap-8" key={idx}>
             <input
               {...register(`${user.uid}`)}
@@ -112,9 +113,9 @@ function Expense() {
             />
             <div className="avatar flex items-center gap-4">
               <div className=" w-12 rounded-full  ">
-                <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                <img src={user.profilePicURL || "/avatar-placeholder.png"} />
               </div>
-              <span className="text-2xl font-bold">User Name</span>
+              <span className="text-2xl font-bold">{user.fullName}</span>
             </div>
           </label>
         ))}

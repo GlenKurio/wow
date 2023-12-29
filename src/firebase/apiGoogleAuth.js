@@ -65,8 +65,8 @@ export async function authWithGoogle({ roomId }) {
       const userInTheRoomUID = usersInTheRoom.map((user) => user.uid);
       userDoc = {
         ...userDoc,
-        [userInTheRoomUID]: 0,
-        roomId: roomId, // Dynamic field name and value
+        [userInTheRoomUID]: 0, // Dynamic field name and value
+        roomId: roomId,
       };
       await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
     } else {
