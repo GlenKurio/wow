@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, firestore } from "./firebase";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 
 export async function signUpWithEmailAndPassword({
@@ -16,6 +16,8 @@ export async function signUpWithEmailAndPassword({
     if (!newUser) {
       throw new Error("Failed to create user");
     }
+    const userRef = doc(firestore, "users", newUser.user.uid);
+
     const uniqueId = uuidv4();
 
     userDoc = {
@@ -43,7 +45,7 @@ export async function signUpWithEmailAndPassword({
       // add a uid row into each userDoc in the room with cuurently signin up user UID ('signingUpUserUID': 0)
       const batch = writeBatch(firestore);
       usersInTheRoom.forEach((user) => {
-        const fieldName = user;
+        const fieldName = newUser.user.uid;
         const userRef = doc(firestore, "users", user);
         batch.update(userRef, { [fieldName]: 0 });
       });
