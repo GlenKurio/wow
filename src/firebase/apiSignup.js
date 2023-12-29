@@ -1,6 +1,14 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, firestore } from "./firebase";
-import { doc, getDoc, getDocs, setDoc } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  getDocs,
+  setDoc,
+  query,
+  collection,
+  where,
+} from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 
 export async function signUpWithEmailAndPassword({
