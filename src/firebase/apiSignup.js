@@ -37,24 +37,25 @@ export async function signUpWithEmailAndPassword({
 
       const querySnap = await getDocs(q);
       querySnap.forEach((doc) => {
-        usersInTheRoom.push({ ...doc.data() });
+        usersInTheRoom.push(doc.id);
       });
       // add a uid row into each userDoc in the room with cuurently signin up user UID ('signingUpUserUID': 0)
       const batch = writeBatch(firestore);
       usersInTheRoom.forEach((user) => {
-        const fieldName = user.uid; // Field name from user.uid
-        const userRef = doc(firestore, "users", user.uid);
+        const fieldName = user;
+        const userRef = doc(firestore, "users", user);
         batch.update(userRef, { [fieldName]: 0 });
       });
       await batch.commit();
 
       // add a uids of all users into currently signing up user doc ('userInTheRoomUID': 0)
-      const userInTheRoomUID = usersInTheRoom.map((user) => user.uid);
-      userDoc = {
-        ...userDoc,
-        [userInTheRoomUID]: 0, // Dynamic field name and value
-        roomId: roomId,
-      };
+      usersInTheRoom.map((user) => {
+        userDoc = {
+          ...userDoc,
+          [user]: 0, // Dynamic field name and value
+          roomId: roomId,
+        };
+      });
       await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
     } else {
       await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
