@@ -35,7 +35,7 @@ function TransactionsTable({ users, roomId }) {
 
   return (
     <>
-      {transactions && users ? (
+      {transactions.length > 0 && users ? (
         <div>
           <div className="overflow-x-auto mb-2">
             <table className="table table-sm table-pin-rows table-pin-cols">
@@ -147,7 +147,29 @@ function TransactionsTable({ users, roomId }) {
           </div>
         </div>
       ) : (
-        "No transactions to show"
+        <div className="overflow-x-auto mb-2">
+          <table className="table table-sm table-pin-rows table-pin-cols">
+            {/* head */}
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Title</th>
+                <th>Type</th>
+                <th>Total</th>
+                <th>With Whom</th>
+                <th>Image</th>
+                <th>More Info</th>
+              </tr>
+            </thead>
+            <tr>
+              <td colSpan={6}>
+                <p className="text-center font-bold text-xl">
+                  No transactions to show yet
+                </p>
+              </td>
+            </tr>
+          </table>
+        </div>
       )}
     </>
   );

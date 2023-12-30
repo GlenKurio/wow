@@ -3,15 +3,14 @@ import InviteUserCard from "../InviteUserCard";
 
 import UserCard from "./UserCard";
 // TODO: get all users in room, add UI to show personal info of user
-function AllUsers({ users }) {
-  const { isLoading, currentUserData } = useCurrentUserData();
 
-  if (isLoading) return <div>Loading</div>;
+function AllUsers({ users }) {
+  const { currentUserData } = useCurrentUserData();
 
   const usersToDisplay = users.filter(
     (user) => user.uid !== currentUserData.uid
   );
-  console.log(usersToDisplay);
+
   return (
     <section className="overflow-scroll max-h-[55vh] ">
       {usersToDisplay ? (

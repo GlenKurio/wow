@@ -24,8 +24,9 @@ export default async function registerExpense(expense) {
   // split total on the number of participants (including current user)
   const total = expenseDoc.total;
   const splitOn = participants.length + 1;
-  const splittedAmount = Number(total) / splitOn;
-  let formattedExpense = splittedAmount.toFixed(2);
+  const splittedAmount = total / splitOn;
+  let formattedExpense = +splittedAmount.toFixed(1);
+
   let URL = "";
 
   try {
@@ -81,10 +82,9 @@ export default async function registerExpense(expense) {
         const fieldName = author;
         const currentFieldValue = participantData[fieldName];
 
-        const updatedValue =
-          Number(currentFieldValue) + Number(formattedExpense); // Update the field value based on its previous value
+        const updatedValue = currentFieldValue + formattedExpense; // Update the field value based on its previous value
 
-        // Set the updated value in the transaction
+        // Set the updated value of the transaction
         transaction.update(participantRef, { [fieldName]: updatedValue });
       });
 

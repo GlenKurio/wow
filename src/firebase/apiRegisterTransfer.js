@@ -19,9 +19,9 @@ export default async function registerExpense(transfer) {
   };
   const recipient = transferDoc.recipient;
   const author = transferDoc.author;
-  const total = Number(transferDoc.total);
-  const formattedTotal = total.toFixed(2);
-  console.log(total);
+  const total = transferDoc.total;
+  const formattedTotal = +total.toFixed(2);
+
   let URL = "";
   try {
     //get author`s doc

@@ -7,8 +7,9 @@ import { useOutletContext } from "react-router-dom";
 function AppHome() {
   const currentUserData = useOutletContext();
   const roomId = currentUserData.roomId;
-  console.log(roomId);
+
   const { isLoading, error, users } = useGetUsers(roomId);
+  // TODO: display skeleton here
   if (isLoading) {
     return (
       <div className="min-h-screen grid place-content-center">
@@ -16,7 +17,7 @@ function AppHome() {
       </div>
     );
   }
-  console.log(users);
+
   //TODO: Get transactions for transactions table with pagination
   return (
     <main className="relative pb-16">
