@@ -59,7 +59,7 @@ export default async function registerExpense(expense) {
     await setDoc(doc(firestore, "users", author), authorData);
 
     const expenseDocRef = await addDoc(
-      collection(firestore, "expenses"),
+      collection(firestore, "transactions"),
       expenseDoc
     );
 

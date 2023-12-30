@@ -30,7 +30,7 @@ function AppHome() {
         Transactions
       </h2>
 
-      <TransactionsTable />
+      <TransactionsTable roomId={roomId} users={users} />
     </main>
   );
 }

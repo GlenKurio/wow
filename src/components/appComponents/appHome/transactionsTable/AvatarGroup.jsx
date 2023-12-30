@@ -1,26 +1,27 @@
 function AvatarGroup({ transaction, users }) {
   const participants = transaction.participants;
+  const recipient = transaction.recipient;
 
   function getUsersAvatars() {
-    if (
-      !participants ||
-      participants.length === 0 ||
-      !users ||
-      users.length === 0
-    ) {
-      return [];
-    }
+    let avatars = [];
 
-    const avatars = participants.map((participant) => {
-      const foundUser = users.find((user) => user.fullName === participant);
-      return foundUser ? foundUser.avatar : null;
-    });
+    if (recipient && !participants) {
+      const foundUser = users.find((user) => user.uid === recipient);
+      if (foundUser) {
+        avatars.push(foundUser.profilePicURL);
+      }
+    } else if (!recipient && participants) {
+      avatars = participants.map((participant) => {
+        const foundUser = users.find((user) => user.uid === participant);
+        return foundUser ? foundUser.profilePicURL : null;
+      });
+    }
 
     return avatars;
   }
 
   const avatars = getUsersAvatars();
-
+  console.log(avatars);
   return (
     <div className="avatar-group -space-x-6 rtl:space-x-reverse">
       {avatars.map((avatar, idx) => (

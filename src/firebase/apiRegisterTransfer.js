@@ -38,7 +38,7 @@ export default async function registerExpense(transfer) {
       totalTransactions: currentTransactions + 1,
     };
     const transferDocRef = await addDoc(
-      collection(firestore, "transfers"),
+      collection(firestore, "transactions"),
       transferDoc
     );
 

@@ -33,6 +33,7 @@ function Expense({ users, currentUserData }) {
       img: selectedFile || null,
       participants: users,
       author: currentUserData.uid,
+      roomId: currentUserData.roomId,
     };
 
     registerNewExpense(expense, {

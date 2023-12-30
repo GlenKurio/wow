@@ -40,6 +40,7 @@ function Transfer({ users, currentUserData }) {
       type: "transfer",
       recipient: user,
       author: currentUserData.uid,
+      roomId: currentUserData.roomId,
     };
     console.log(transferData);
     registerNewTransfer(transferData);

@@ -1,7 +1,11 @@
 import CopyInvitationLink from "./appHome/CopyInvitationLink";
 import InviteUser from "./appHome/InviteUser";
 
-function InviteUserCard({ roomId }) {
+import { useCurrentUserData } from "../../hooks/useGetCurrentUserData";
+function InviteUserCard() {
+  const { isLoading, currentUserData } = useCurrentUserData();
+
+  const room = currentUserData.roomId;
   return (
     <article className="flex flex-col gap-2 p-1 ">
       <h1 className="text-center font-bold text-2xl text-accent">
@@ -10,8 +14,8 @@ function InviteUserCard({ roomId }) {
       <h2 className="text-center font-bold text-lg -mb-2">
         Here is your invite link:
       </h2>
-      <CopyInvitationLink roomId={roomId} />
-      <InviteUser roomId={roomId} />
+      <CopyInvitationLink roomId={room} />
+      <InviteUser roomId={room} />
     </article>
   );
 }

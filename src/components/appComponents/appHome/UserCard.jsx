@@ -52,7 +52,7 @@ function UserCard({ user }) {
           </div>
         </div>
         <div className="stat">
-          <div className="stat-title">Total Transactions This Month</div>
+          <div className="stat-title">Total Transactions</div>
           <div className="stat-value">{user.totalTransactions}</div>
           <div className="stat-desc">21% more than last month</div>
         </div>

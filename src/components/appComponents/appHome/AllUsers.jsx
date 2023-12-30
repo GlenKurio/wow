@@ -5,7 +5,7 @@ import UserCard from "./UserCard";
 // TODO: get all users in room, add UI to show personal info of user
 function AllUsers({ users }) {
   const { isLoading, currentUserData } = useCurrentUserData();
-  const room = currentUserData.roomId;
+
   if (isLoading) return <div>Loading</div>;
 
   const usersToDisplay = users.filter(
@@ -19,7 +19,7 @@ function AllUsers({ users }) {
       ) : (
         <>
           <div className=" p-4">
-            <InviteUserCard roomId={room} />
+            <InviteUserCard />
           </div>
         </>
       )}

@@ -1,143 +1,36 @@
 import { Link } from "react-router-dom";
 import AvatarGroup from "./AvatarGroup";
+import { useGetTransactions } from "../../../../hooks/useGetTransactions";
+import { toast } from "react-hot-toast";
 
-const transactions = [
-  {
-    user: "Oleh Minko",
-    title: "Car Insurance",
-    description: "Monthly payment for car insurance to MPI",
-    total: 145,
-    type: "transfer",
-    img: "/public/avatars/polina.png",
-    participants: ["Polina Shaban", "Vita Minko"],
-  },
-
-  {
-    user: "Vita Minko",
-    title: "Car Insurance",
-    description: "Monthly payment for car insurance to MPI",
-    total: 145,
-    img: null,
-    type: "expense",
-    participants: ["Polina Shaban", "Vita Minko"],
-  },
-  {
-    user: "Polina Shaban",
-    title: "Car Insurance",
-    description: "Monthly payment for car insurance to MPI",
-    total: 145,
-    img: null,
-    type: "transfer",
-    participants: ["Polina Shaban", "Vita Minko"],
-  },
-  {
-    user: "Oleh Minko",
-    title: "Car Insurance",
-    description: "Monthly payment for car insurance to MPI",
-    total: 145,
-    type: "transfer",
-    participants: ["Polina Shaban", "Vita Minko"],
-    img: null,
-  },
-
-  {
-    user: "Vita Minko",
-    title: "Car Insurance",
-    description: "Monthly payment for car insurance to MPI",
-    total: 145,
-    img: null,
-    type: "expense",
-    participants: ["Polina Shaban", "Vita Minko"],
-  },
-  {
-    user: "Polina Shaban",
-    title: "Car Insurance",
-    description: "Monthly payment for car insurance to MPI",
-    total: 145,
-    img: null,
-    type: "transfer",
-    participants: ["Polina Shaban", "Vita Minko"],
-  },
-  {
-    user: "Oleh Minko",
-    title: "Car Insurance",
-    description: "Monthly payment for car insurance to MPI",
-    total: 145,
-    type: "transfer",
-    participants: ["Polina Shaban", "Vita Minko"],
-
-    img: null,
-  },
-
-  {
-    user: "Vita Minko",
-    title: "Car Insurance",
-    description: "Monthly payment for car insurance to MPI",
-    total: 145,
-    img: null,
-    type: "expense",
-    participants: ["Polina Shaban", "Vita Minko"],
-  },
-  {
-    user: "Vita Minko",
-    title: "Car Insurance",
-    description: "Monthly payment for car insurance to MPI",
-    total: 145,
-    img: null,
-    type: "expense",
-    participants: ["Polina Shaban", "Vita Minko"],
-  },
-  {
-    user: "Vita Minko",
-    title: "Car Insurance",
-    description: "Monthly payment for car insurance to MPI",
-    total: 145,
-    img: null,
-    type: "expense",
-    participants: ["Polina Shaban", "Vita Minko"],
-  },
-  {
-    user: "Vita Minko",
-    title: "Car Insurance",
-    description: "Monthly payment for car insurance to MPI",
-    total: 145,
-    img: null,
-    type: "expense",
-    participants: ["Polina Shaban", "Vita Minko"],
-  },
-  {
-    user: "Polina Shaban",
-    title: "Car Insurance",
-    description: "Monthly payment for car insurance to MPI",
-    total: 145,
-    img: null,
-    type: "transfer",
-    participants: ["", ""],
-  },
-];
-// TODO: get all transactions form room
-function TransactionsTable({ users }) {
+function TransactionsTable({ users, roomId }) {
   const transactionTypes = {
     transfer: "text-warning ",
     expense: "text-error",
   };
-  if (users && transactions) {
-    function getUserInfo(transaction) {
-      const currentTransactionUser = users.find(
-        (user) => user.fullName === transaction.user
-      );
+  const { isLoading, error, transactions } = useGetTransactions(roomId);
+  if (error) toast.error(error.message);
+  // TODO: add skeleton here:
+  if (isLoading) {
+    return <span className="loading loading-dots loading-lg"></span>;
+  }
 
-      if (currentTransactionUser) {
-        return {
-          avatar: currentTransactionUser.avatar,
-          fullName: currentTransactionUser.fullName,
-        };
-      }
+  // get user info for transaction
+  function getUserInfo(transaction) {
+    const currentTransactionUser = users.find(
+      (user) => user.uid === transaction.author
+    );
 
+    if (currentTransactionUser) {
       return {
-        avatar: "",
+        avatar: currentTransactionUser.profilePicURL,
+        fullName: currentTransactionUser.fullName,
       };
     }
+
+    return {
+      avatar: "",
+    };
   }
 
   return (
