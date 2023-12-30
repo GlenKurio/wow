@@ -1,6 +1,6 @@
 import { useCurrentUserData } from "../../../hooks/useGetCurrentUserData";
-import CopyInvitationLink from "./CopyInvitationLink";
-import InviteUser from "./InviteUser";
+import InviteUserCard from "../InviteUserCard";
+
 import UserCard from "./UserCard";
 // TODO: get all users in room, add UI to show personal info of user
 function AllUsers({ users }) {
@@ -17,16 +17,12 @@ function AllUsers({ users }) {
       {usersToDisplay ? (
         usersToDisplay.map((user, idx) => <UserCard user={user} key={idx} />)
       ) : (
-        <p className="px-4 text-xl font-bold">
-          There is no one in here yet. Invite someone!
-        </p>
+        <>
+          <div className=" p-4">
+            <InviteUserCard roomId={room} />
+          </div>
+        </>
       )}
-      <div className=" p-4">
-        <div className="flex flex-col  p-2 gap-2">
-          <CopyInvitationLink roomId={room} />
-          <InviteUser roomId={room} />
-        </div>
-      </div>
     </section>
   );
 }

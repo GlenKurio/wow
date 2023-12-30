@@ -13,13 +13,7 @@ function Modal({ children, showModal, setShowModal }) {
               ✕
             </button>
           </form>
-          <h3 className="font-bold text-lg">
-            Please enter your current email and password
-          </h3>
-          <small>
-            It`s required to confirm your authorization before updating email
-            and/or password.
-          </small>
+
           {children}
           <div className="modal-action">
             <form method="dialog">

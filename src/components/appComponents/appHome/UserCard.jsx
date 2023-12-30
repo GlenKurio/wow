@@ -29,7 +29,7 @@ function UserCard({ user }) {
       <div className="stats shadow">
         <div className="stat">
           <div className="avatar ">
-            <div className="w-20 h-20 rounded-full">
+            <div className="w-16 h-16 rounded-full">
               <img src={user.profilePicURL || "/avatar-placeholder.png"} />
             </div>
           </div>
