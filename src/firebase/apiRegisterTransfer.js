@@ -19,7 +19,9 @@ export default async function registerExpense(transfer) {
   };
   const recipient = transferDoc.recipient;
   const author = transferDoc.author;
-  const total = transferDoc.total;
+  const total = Number(transferDoc.total);
+  const formattedTotal = total.toFixed(2);
+  console.log(total);
   let URL = "";
   try {
     //get author`s doc
@@ -42,7 +44,7 @@ export default async function registerExpense(transfer) {
 
     // update balance for recipient in current user's doc
     const currentFieldValue = authorData[recipient];
-    const updatedValue = Number(currentFieldValue) - Number(total);
+    const updatedValue = currentFieldValue - formattedTotal;
     authorData = {
       ...authorData,
       [recipient]: updatedValue, // Dynamic field name and value
@@ -66,7 +68,7 @@ export default async function registerExpense(transfer) {
       const fieldName = author;
       const currentFieldValue = recipientData[fieldName];
 
-      const updatedValue = Number(currentFieldValue) + Number(total); // Update the field value based on its previous value
+      const updatedValue = currentFieldValue + total; // Update the field value based on its previous value
 
       // Set the updated value in the transaction
       transaction.update(recipientRef, { [fieldName]: updatedValue });

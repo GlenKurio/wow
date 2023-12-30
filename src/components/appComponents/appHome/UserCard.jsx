@@ -5,7 +5,7 @@ function UserCard({ user }) {
   const { currentUserData } = useCurrentUserData();
   const currentUserUid = currentUserData.uid;
   console.log(user);
-  const balance = parseInt(user[currentUserUid]);
+  const balance = user[currentUserUid];
   const firstName = user.fullName.split(" ")[0];
   console.log("balance:", balance);
   function balanceStatus(balance) {

@@ -23,8 +23,9 @@ export default async function registerExpense(expense) {
   const author = expenseDoc.author;
   // split total on the number of participants (including current user)
   const total = expenseDoc.total;
-  const splittedAmount = Number(total) / (participants.length + 1);
-
+  const splitOn = participants.length + 1;
+  const splittedAmount = Number(total) / splitOn;
+  let formattedExpense = splittedAmount.toFixed(2);
   let URL = "";
 
   try {
@@ -47,7 +48,7 @@ export default async function registerExpense(expense) {
     participants.map((participant) => {
       const currentFieldValue = authorData[participant];
 
-      const updatedValue = Number(currentFieldValue) - Number(splittedAmount);
+      const updatedValue = currentFieldValue - formattedExpense;
       authorData = {
         ...authorData,
         [participant]: updatedValue, // Dynamic field name and value
@@ -80,7 +81,8 @@ export default async function registerExpense(expense) {
         const fieldName = author;
         const currentFieldValue = participantData[fieldName];
 
-        const updatedValue = Number(currentFieldValue) + Number(splittedAmount); // Update the field value based on its previous value
+        const updatedValue =
+          Number(currentFieldValue) + Number(formattedExpense); // Update the field value based on its previous value
 
         // Set the updated value in the transaction
         transaction.update(participantRef, { [fieldName]: updatedValue });
