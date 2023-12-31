@@ -1,26 +1,25 @@
 import MoveBackButton from "../../components/MoveBackButton";
 import { useParams } from "react-router-dom";
+import { useGetTransactionDetails } from "../../hooks/useGetTransactionDetails";
+import { useCurrentUserData } from "../../hooks/useGetCurrentUserData";
+import { useGetUsers } from "../../hooks/useGetUsers";
+import AvatarGroup from "../../components/appComponents/appHome/transactionsTable/AvatarGroup";
 
-const transaction = {
-  author: "123456",
-  title: "Car Insurance",
-  description:
-    "Monthly payment for car insurance to MPI. And blah blah blah and so on and go on alalalf asdf sdf ",
-  total: 145,
-  type: "transfer",
-  img: "/public/avatars/polina.png",
-  participants: ["Polina Shaban", "Vita Minko"],
-  createdAt: Date.now(),
-};
-
-const currUser = "123456";
 //TODO: get transactions from query cache, as well as users info. Get current auth user. If uathor-uid of transaction == current-auth-user uid - allow edit.
 function TransactionDetails() {
   const { id } = useParams();
+  const { currentUserData } = useCurrentUserData();
+  const { users } = useGetUsers(currentUserData.roomId);
+  const { isLoading, transactionData } = useGetTransactionDetails(id);
+  if (isLoading) return <div>Loading...</div>;
+
+  const currentTransactionAuthor = users.find(
+    (user) => user.uid === transactionData.author
+  );
 
   return (
     <main className="min-h-screen px-4 pb-16">
-      {currUser === transaction.author ? (
+      {currentUserData.uid === transactionData.author ? (
         <div className="px-4 fixed bottom-2 left-0 w-full z-20">
           <button className="btn btn-accent w-full  flex items-center">
             <svg
@@ -46,84 +45,94 @@ function TransactionDetails() {
         Transaction Details
       </h1>
       <section className="flex flex-col text-xl gap-8">
-        <div className="text-xl font-semibold flex  flex-col gap-4">
-          <div className="flex gap-2 ">
-            <span className="border-b-[1px] border-accent">
-              Transaction id:
-            </span>
+        <div className="text-xl font-semibold flex  flex-col gap-8">
+          <div className="flex gap-2 items-center py-2 border-b-[1px] border-accent">
+            <span className="text-secondary">Transaction id:</span>
             <span>{id}</span>
           </div>
-          <div className="flex  gap-2">
-            <span className="border-b-[1px] border-accent">
-              Transaction type:{" "}
-            </span>
+          <div className="flex  gap-2 py-2 border-b-[1px] border-accent justify-between">
+            <span className="text-secondary">Transaction type: </span>
             <span
               className={
-                transaction.type === "transfer"
+                transactionData.type === "transfer"
                   ? "text-warning-content bg-warning px-4 py-1 rounded-full text-sm max-w-[150px] "
                   : " text-error-content bg-error px-4 py-1 rounded-full text-sm max-w-[150px]  "
               }
             >
-              {transaction.type}
+              {transactionData.type}
             </span>
           </div>
         </div>
-        <div className="flex flex-col  justify-center ">
-          <p className=" text-accent  font-bold capitalize ">
-            Transaction author
+        <div className="flex items-center justify-between border-b-[1px] border-accent">
+          <p className=" text-secondary  font-bold capitalize ">
+            Transaction author:
           </p>
-          <div className="py-2 border-b-[1px] border-accent ">
-            <figure className="flex items-center gap-8 ">
+          <div className="py-2">
+            <figure className="flex items-center gap-2 ">
               <div className="avatar">
-                <div className="w-16 rounded-full">
-                  <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                <div className="w-10 rounded-full">
+                  <img
+                    src={
+                      currentTransactionAuthor.profilePicURL ||
+                      "/avatar-placeholder.png"
+                    }
+                  />
                 </div>
               </div>
-              <figcaption className="text-2xl "> User Name</figcaption>
+              <figcaption className="text-xl ">
+                {" "}
+                {currentTransactionAuthor.fullName}
+              </figcaption>
             </figure>
           </div>
         </div>
         <div className="flex flex-col ">
-          <p className=" text-accent  font-bold capitalize ">
+          <p className=" text-secondary  font-bold capitalize ">
             Transaction title
           </p>
           <div className="border-b-[1px] border-accent py-2">
-            <p className="text-2xl ">{transaction.title}</p>
+            <p className="text-2xl ">{transactionData.title}</p>
           </div>
         </div>
-        <div className="flex flex-col">
-          <p className="text-accent  font-bold capitalize ">
-            Transaction Total
+        <div className="flex items-center gap-8 border-b-[1px] border-accent justify-between">
+          <p className="text-secondary font-bold capitalize ">
+            Transaction Total:
           </p>
-          <div className="border-b-[1px] border-accent py-2">
-            <p className="text-2xl ">${transaction.total}</p>
+          <div className=" py-2">
+            <p className="text-2xl ">${transactionData.total}</p>
           </div>
         </div>
         {/* TODO: get participants fullName & Avataars */}
-        <div className="flex flex-col  ">
-          {transaction.type === "transfer" ? (
-            <p className=" text-accent  font-bold capitalize">Transfer to</p>
+        <div className="flex items-center gap-4 border-b-[1px] border-accent justify-between">
+          {transactionData.type === "transfer" ? (
+            <p className="text-secondary font-bold capitalize">Transfer to</p>
           ) : (
-            <p className=" text-accent p-1 font-bold capitalize">Split with:</p>
+            <p className="text-secondary p-1 font-bold capitalize">
+              Split with:
+            </p>
           )}
-          <div className="py-2 border-b-[1px] border-accent">
-            {transaction.participants}
+          <div className="py-2 ">
+            <AvatarGroup transaction={transactionData} users={users} />
           </div>
         </div>
         <div className="flex flex-col">
-          <p className=" text-accent  font-bold capitalize">
+          <p className="text-secondary font-bold capitalize">
             Transaction Description
           </p>
           <div className="border-b-[1px] border-accent py-2">
-            <p className="text-2xl">{transaction.description}</p>
+            <p className="text-2xl">{transactionData.description}</p>
           </div>
         </div>
-        <div className="flex flex-col ">
-          <p className=" text-accent font-bold capitalize">Image</p>
+        <div className="flex flex-col w-full">
+          <p className="text-secondary font-bold capitalize">Image</p>
           <div className="border-b-[1px] border-accent py-2">
-            {transaction.img ? (
-              <figure>
-                <img src={transaction.img} alt="" />
+            {transactionData.img ? (
+              <figure className="w-full">
+                <img
+                  className="w-[100%]"
+                  src={transactionData.img}
+                  alt="Image which show details or a proof of a transaction"
+                />
               </figure>
             ) : (
               <p>No image with this transaction</p>

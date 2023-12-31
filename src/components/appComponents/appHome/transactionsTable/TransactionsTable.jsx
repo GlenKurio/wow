@@ -119,7 +119,7 @@ function TransactionsTable({ users, roomId }) {
                     </td>
                     <th>
                       <Link
-                        to={`transaction-details/${idx}`}
+                        to={`transaction-details/${transaction.id}`}
                         className="btn btn-ghost btn-xs text-accent"
                       >
                         details
