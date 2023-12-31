@@ -8,6 +8,7 @@ export function useGetTransactionDetails(id) {
   } = useQuery({
     queryKey: ["transaction-data", id],
     queryFn: () => apiGetTransactionDetails(id),
+    retry: false,
   });
   return { isLoading, transactionData, error };
 }

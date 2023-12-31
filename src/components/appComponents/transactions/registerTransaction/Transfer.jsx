@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useState } from "react";
-import usePreviewImg from "../../../hooks/usePreviewImg";
-import { useRegisterTransfer } from "../../../hooks/useRegisterTransfer";
+import usePreviewImg from "../../../../hooks/usePreviewImg";
+import { useRegisterTransfer } from "../../../../hooks/useRegisterTransfer";
 
 // TODO: finish register transfer
 function Transfer({ users, currentUserData }) {

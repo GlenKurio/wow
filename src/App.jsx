@@ -4,7 +4,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import LandingLayout from "./components/layouts/landingLayout/LandingLayout";
 import HomePage from "./pages/landing/home/HomePage";
-import AuthPage from "./pages/landing/auth/AuthPage";
+import AuthPage from "./pages/app/auth/AuthPage";
 import AppLayout from "./components/layouts/appLayout/AppLayout";
 import AppHome from "./pages/app/AppHome";
 import RootRoute from "./pages/RootRoute";

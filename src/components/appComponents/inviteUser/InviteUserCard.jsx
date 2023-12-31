@@ -1,7 +1,7 @@
-import CopyInvitationLink from "./appHome/CopyInvitationLink";
-import InviteUser from "./appHome/InviteUser";
+import CopyInvitationLink from "./CopyInvitationLink";
+import InviteUser from "./InviteUser";
 
-import { useCurrentUserData } from "../../hooks/useGetCurrentUserData";
+import { useCurrentUserData } from "../../../hooks/useGetCurrentUserData";
 function InviteUserCard() {
   const { isLoading, currentUserData } = useCurrentUserData();
 

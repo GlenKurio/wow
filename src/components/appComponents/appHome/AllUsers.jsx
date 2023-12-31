@@ -1,5 +1,5 @@
 import { useCurrentUserData } from "../../../hooks/useGetCurrentUserData";
-import InviteUserCard from "../InviteUserCard";
+import InviteUserCard from "../inviteUser/InviteUserCard";
 
 import UserCard from "./UserCard";
 // TODO: get all users in room, add UI to show personal info of user

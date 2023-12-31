@@ -5,7 +5,7 @@ import { auth } from "../../../firebase/firebase";
 import { signOut } from "firebase/auth";
 import Modal from "../../Modal";
 import { useState } from "react";
-import InviteUserCard from "../../appComponents/InviteUserCard";
+import InviteUserCard from "../../appComponents/inviteUser/InviteUserCard";
 
 function AppNav({ currentUserData }) {
   const firstName = currentUserData.fullName.split(" ")[0];

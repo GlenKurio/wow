@@ -61,7 +61,9 @@ function TransactionsTable({ users, roomId }) {
                           <div className="rounded-full w-12 h-12">
                             <img
                               src={getUserInfo(transaction).avatar}
-                              alt={`image of ${transaction.user}`}
+                              alt={`image of ${
+                                getUserInfo(transaction).fullName
+                              }`}
                             />
                           </div>
                         </div>

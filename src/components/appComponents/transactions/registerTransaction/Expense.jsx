@@ -1,18 +1,28 @@
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useState } from "react";
-import usePreviewImg from "../../../hooks/usePreviewImg";
-import { useRegisterExpense } from "../../../hooks/useRegisterExpense";
-
+import usePreviewImg from "../../../../hooks/usePreviewImg";
+import { useRegisterExpense } from "../../../../hooks/useRegisterExpense";
+import { useSearchParams } from "react-router-dom";
+import { useGetTransactionDetails } from "../../../../hooks/useGetTransactionDetails";
+import { useEffect } from "react";
 function Expense({ users, currentUserData }) {
   const { isRegistering, registerNewExpense } = useRegisterExpense();
   const [boxError, setBoxError] = useState(null);
   const { register, handleSubmit, formState, reset } = useForm();
   const { errors } = formState;
   const { handleImageChange, setSelectedFile, selectedFile } = usePreviewImg();
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const transactionId = searchParams.get("id");
+
+  const { isLoading, transactionData } =
+    useGetTransactionDetails(transactionId);
+
   const usersToSelect = users.filter(
     (user) => user.uid !== currentUserData.uid
   );
+
   function onSubmit(inputs) {
     let users = [];
 
@@ -36,16 +46,34 @@ function Expense({ users, currentUserData }) {
       roomId: currentUserData.roomId,
     };
 
-    registerNewExpense(expense, {
-      onSuccess: (inputs) => {
-        reset();
-      },
-    });
+    if (transactionId) {
+      return toast.success("editing expense");
+    } else {
+      registerNewExpense(expense, {
+        onSuccess: (inputs) => {
+          reset();
+        },
+      });
+    }
   }
+  //TODO: Skeleton:
+  if (isLoading) return <div>Loading ...</div>;
 
+  useEffect(() => {
+    if (transactionData) {
+      setSelectedFile(transactionData.img);
+    } else {
+      setSelectedFile(null); // Set default value to true if not present or "expense"
+    }
+  }, [transactionData]);
   return (
     <section className="">
-      <h1 className="text-2xl font-bold mt-8 mb-4">Register new Expense:</h1>
+      {transactionId ? (
+        <h1 className="text-2xl font-bold mt-8 mb-4">Edit Expense:</h1>
+      ) : (
+        <h1 className="text-2xl font-bold mt-8 mb-4">Register new Expense:</h1>
+      )}
+
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
         <label className="form-control w-full max-w-[30rem]">
           <div className="label">
@@ -62,6 +90,7 @@ function Expense({ users, currentUserData }) {
             {...register("amount", { required: "This field is required" })}
             type="number"
             placeholder="Amount of expense"
+            defaultValue={transactionData ? transactionData.total : null}
             className={
               errors?.amount?.message
                 ? " input input-bordered input-error w-full max-w-[30rem]"
@@ -84,6 +113,7 @@ function Expense({ users, currentUserData }) {
             {...register("title", { required: "This field is required" })}
             type="text"
             placeholder="Title of expense"
+            defaultValue={transactionData ? transactionData.title : null}
             className={
               errors?.title?.message
                 ? " input input-bordered input-error w-full max-w-[30rem]"
@@ -130,6 +160,7 @@ function Expense({ users, currentUserData }) {
           <textarea
             {...register("description")}
             type="text"
+            defaultValue={transactionData ? transactionData.description : null}
             placeholder="Description of expense"
             className="textarea textarea-bordered w-full max-w-[30rem] h-24"
           />
@@ -138,11 +169,18 @@ function Expense({ users, currentUserData }) {
           <div className="label">
             <span className="label-text text-lg font-semibold">Image</span>
           </div>
-          <input
-            type="file"
-            className="file-input file-input-bordered w-full max-w-[30rem] "
-            onChange={handleImageChange}
-          />
+          {transactionData.img ? (
+            <figure>
+              <img src={transactionData.img} />
+              {/* TODO: Delete image before selecting new one */}
+            </figure>
+          ) : (
+            <input
+              type="file"
+              className="file-input file-input-bordered w-full max-w-[30rem] "
+              onChange={handleImageChange}
+            />
+          )}
         </label>
         {isRegistering ? (
           <button className="btn btn-accent w-full mt-8">
