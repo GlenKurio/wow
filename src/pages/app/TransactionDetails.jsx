@@ -4,9 +4,11 @@ import { useGetTransactionDetails } from "../../hooks/useGetTransactionDetails";
 import { useCurrentUserData } from "../../hooks/useGetCurrentUserData";
 import { useGetUsers } from "../../hooks/useGetUsers";
 import AvatarGroup from "../../components/appComponents/appHome/transactionsTable/AvatarGroup";
+import { useDeleteTransaction } from "../../hooks/useDeleteTransaction";
 
 //TODO: get transactions from query cache, as well as users info. Get current auth user. If uathor-uid of transaction == current-auth-user uid - allow edit.
 function TransactionDetails() {
+  const { isDeleting, deleteTransaction } = useDeleteTransaction();
   const { id } = useParams();
   const { currentUserData } = useCurrentUserData();
   const { users } = useGetUsers(currentUserData.roomId);
@@ -21,7 +23,10 @@ function TransactionDetails() {
     <main className="min-h-screen px-4 pb-28">
       {currentUserData.uid === transactionData.author ? (
         <div className="px-4 fixed bottom-2 left-0 w-full z-20 flex flex-col gap-2">
-          <button className="btn btn-error w-full flex items-center">
+          <button
+            onClick={() => deleteTransaction({ id, transactionData })}
+            className="btn btn-error w-full flex items-center"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

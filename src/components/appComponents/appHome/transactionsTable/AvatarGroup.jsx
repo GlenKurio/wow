@@ -21,7 +21,7 @@ function AvatarGroup({ transaction, users }) {
   }
 
   const avatars = getUsersAvatars();
-  console.log(avatars);
+
   return (
     <div className="avatar-group -space-x-6 rtl:space-x-reverse">
       {avatars.map((avatar, idx) => (

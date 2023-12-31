@@ -44,12 +44,12 @@ export default async function registerExpense(expense) {
       ...authorData,
       totalTransactions: currentTransactions + 1,
     };
-    // update balances for each participant in current user`s doc
+    // update balances for each participant in author`s doc
 
     participants.map((participant) => {
       const currentFieldValue = authorData[participant];
 
-      const updatedValue = currentFieldValue - formattedExpense;
+      const updatedValue = currentFieldValue + formattedExpense;
       authorData = {
         ...authorData,
         [participant]: updatedValue, // Dynamic field name and value
@@ -82,7 +82,7 @@ export default async function registerExpense(expense) {
         const fieldName = author;
         const currentFieldValue = participantData[fieldName];
 
-        const updatedValue = currentFieldValue + formattedExpense; // Update the field value based on its previous value
+        const updatedValue = currentFieldValue - formattedExpense; // Update the field value based on its previous value
 
         // Set the updated value of the transaction
         transaction.update(participantRef, { [fieldName]: updatedValue });
