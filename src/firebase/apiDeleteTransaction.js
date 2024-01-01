@@ -1,6 +1,13 @@
 import { deleteObject, ref } from "firebase/storage";
 import { firestore, storage } from "./firebase";
-import { deleteDoc, doc, getDoc, runTransaction } from "firebase/firestore";
+import {
+  deleteDoc,
+  doc,
+  getDoc,
+  runTransaction,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 
 export async function apiDeleteTransaction({ id, transactionData }) {
   let participants = [];
@@ -13,6 +20,10 @@ export async function apiDeleteTransaction({ id, transactionData }) {
 
   console.log(participants);
   const transactionAuthor = transactionData.author;
+  const total = transactionData.total;
+  const splitOn = participants.length + 1;
+  const splittedAmount = total / splitOn;
+  let formattedExpense = +splittedAmount.toFixed(1);
   try {
     // 1) Get all docs of participants of transaction and update them accordingly
     const batchUpdates = [];
@@ -27,7 +38,7 @@ export async function apiDeleteTransaction({ id, transactionData }) {
         const fieldName = transactionAuthor;
         const currentFieldValue = participantData[fieldName];
 
-        const updatedValue = currentFieldValue - +transactionData.total; // Update the field value based on its previous value
+        const updatedValue = currentFieldValue - formattedExpense; // Update the field value based on its previous value
 
         // Set the updated value of the transaction
         transaction.update(participantRef, { [fieldName]: updatedValue });
@@ -41,31 +52,28 @@ export async function apiDeleteTransaction({ id, transactionData }) {
     // 2) Update Author`s doc
 
     //get author`s doc
-    const docRef = doc(firestore, "users", transactionAuthor);
+    const authorDocRef = doc(firestore, "users", transactionAuthor);
     let authorData;
-    const docSnap = await getDoc(docRef);
+    const docSnap = await getDoc(authorDocRef);
     if (docSnap.exists()) {
       authorData = { ...docSnap.data() };
     }
-    //update number of transactions
     const currentTransactions = authorData.totalTransactions;
-
     authorData = {
       ...authorData,
       totalTransactions: currentTransactions - 1,
     };
-
     // update balances for each participant in author`s doc
     participants.map((participant) => {
       const currentFieldValue = authorData[participant];
 
-      const updatedValue = currentFieldValue + transactionData.total;
+      const updatedValue = currentFieldValue + formattedExpense;
       authorData = {
         ...authorData,
         [participant]: updatedValue, // Dynamic field name and value
       };
     });
-
+    await setDoc(authorDocRef, authorData);
     // 3) Delete transaction doc and image
     if (transactionData.img) {
       const imageRef = ref(storage, `transactions/${id}`);
