@@ -20,9 +20,9 @@ function TransactionDetails() {
   );
 
   return (
-    <main className="min-h-screen px-4 pb-28">
+    <main className="min-h-screen px-4 pb-28 lg:max-w-[60vw] mx-auto">
       {currentUserData.uid === transactionData.author ? (
-        <div className="px-4 fixed bottom-2 left-0 w-full z-20 flex flex-col gap-2">
+        <div className="px-4 fixed bottom-2 left-0 w-full z-20 flex flex-col gap-2 lg:max-w-[60vw] lg:left-[50%] lg:translate-x-[-50%]">
           <button
             onClick={() => deleteTransaction({ id, transactionData })}
             className="btn btn-error w-full flex items-center"
@@ -51,11 +51,11 @@ function TransactionDetails() {
       </h1>
       <section className="flex flex-col text-xl gap-8">
         <div className="text-xl font-semibold flex  flex-col gap-8">
-          <div className="flex gap-2 items-center py-2 border-b-[1px] border-accent justify-between">
+          <div className="flex flex-col md:flex-row gap-2 items-center py-2 border-b-[1px] border-secondary/50 justify-between">
             <span className="text-secondary">Transaction id:</span>
             <span>{id}</span>
           </div>
-          <div className="flex  gap-2 py-2 border-b-[1px] border-accent justify-between">
+          <div className="flex  gap-2 py-2 border-b-[1px] border-secondary/50 items-center md:justify-between flex-col md:flex-row ">
             <span className="text-secondary">Transaction type: </span>
             <span
               className={
@@ -68,7 +68,7 @@ function TransactionDetails() {
             </span>
           </div>
         </div>
-        <div className="flex items-center justify-between border-b-[1px] border-accent">
+        <div className="flex items-center justify-between border-b-[1px] border-secondary/50 flex-col md:flex-row">
           <p className=" text-secondary  font-bold capitalize ">
             Transaction author:
           </p>
@@ -91,15 +91,15 @@ function TransactionDetails() {
             </figure>
           </div>
         </div>
-        <div className="flex flex-col ">
+        <div className="flex items-center md:justify-between flex-col md:flex-row border-b-[1px] border-secondary/50 py-2">
           <p className=" text-secondary  font-bold capitalize ">
-            Transaction title
+            Transaction title:
           </p>
-          <div className="border-b-[1px] border-accent py-2">
+          <div className="">
             <p className="text-2xl ">{transactionData.title}</p>
           </div>
         </div>
-        <div className="flex items-center gap-8 border-b-[1px] border-accent justify-between">
+        <div className="flex items-center md:justify-between flex-col md:flex-row  border-b-[1px] border-secondary/50">
           <p className="text-secondary font-bold capitalize ">
             Transaction Total:
           </p>
@@ -108,9 +108,9 @@ function TransactionDetails() {
           </div>
         </div>
         {/* TODO: get participants fullName & Avataars */}
-        <div className="flex items-center gap-4 border-b-[1px] border-accent justify-between">
+        <div className="border-b-[1px] border-secondary/50 flex items-center md:justify-between flex-col md:flex-row">
           {transactionData.type === "transfer" ? (
-            <p className="text-secondary font-bold capitalize">Transfer to</p>
+            <p className="text-secondary font-bold capitalize">Transfer to:</p>
           ) : (
             <p className="text-secondary p-1 font-bold capitalize">
               Split with:
@@ -120,17 +120,25 @@ function TransactionDetails() {
             <AvatarGroup transaction={transactionData} users={users} />
           </div>
         </div>
-        <div className="flex flex-col">
+        <div className="flex items-center md:justify-between flex-col md:flex-row border-b-[1px] border-secondary/50 py-2 ">
           <p className="text-secondary font-bold capitalize">
-            Transaction Description
+            Transaction Description:
           </p>
-          <div className="border-b-[1px] border-accent py-2">
-            <p className="text-2xl">{transactionData.description}</p>
+          <div className="">
+            <p className="text-xl">
+              {transactionData.description ? (
+                transactionData.description
+              ) : (
+                <span className="text-sm font-bold italic text-secondary/50">
+                  No description for this transaction
+                </span>
+              )}
+            </p>
           </div>
         </div>
-        <div className="flex flex-col w-full">
+        <div className="flex items-center md:justify-between flex-col md:items-start  w-full border-b-[1px] border-secondary/50 py-2">
           <p className="text-secondary font-bold capitalize">Image</p>
-          <div className="border-b-[1px] border-accent py-2">
+          <div className="">
             {transactionData.img ? (
               <figure className="w-full">
                 <img
@@ -140,7 +148,9 @@ function TransactionDetails() {
                 />
               </figure>
             ) : (
-              <p>No image with this transaction</p>
+              <span className="text-sm font-bold italic text-secondary/50">
+                No image for this transaction
+              </span>
             )}
           </div>
         </div>

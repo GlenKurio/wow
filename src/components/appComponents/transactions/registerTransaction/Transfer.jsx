@@ -47,7 +47,7 @@ function Transfer({ users, currentUserData }) {
   }
 
   return (
-    <section className="">
+    <section className="flex-col w-[30rem] mx-auto">
       <h1 className="text-2xl font-bold mt-8 mb-4">Register new Transfer:</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
         <label className="form-control w-full max-w-[30rem]">
@@ -62,7 +62,10 @@ function Transfer({ users, currentUserData }) {
             )}
           </div>
           <input
-            {...register("amount", { required: "This field is required" })}
+            {...register("amount", {
+              required: "This field is required",
+              validate: (value) => value > 0 || "Amount must be bigger than 0",
+            })}
             type="number"
             placeholder="Amount of transfer"
             className={

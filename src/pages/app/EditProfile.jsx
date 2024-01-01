@@ -35,14 +35,17 @@ function EditProfile() {
     updateProfile({ inputs, selectedFile, currentUserData });
   }
   return (
-    <main className="min-h-min px-4 pb-16">
+    <main className="min-h-min px-4 pb-16 lg:max-w-[60vw] mx-auto">
       <MoveBackButton />
 
       <h1 className="text-2xl font-bold text-accent  mb-4 capitalize">
         Update your account
       </h1>
       <section>
-        <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className="flex flex-col gap-4 items-center"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <label className="form-control w-full max-w-[30rem]">
             <div className="label">
               <span className="label-text text-lg font-semibold border-b-[1px] border-accent ">
@@ -125,11 +128,13 @@ function EditProfile() {
           </label>
 
           {isUpdating ? (
-            <button className="btn btn-accent w-full mt-8">
+            <button className="btn btn-accent w-full mt-8 max-w-[30rem] ">
               <span className="loading loading-spinner loading-xs"></span>{" "}
             </button>
           ) : (
-            <button className="btn btn-accent w-full mt-8">Save Changes</button>
+            <button className="btn btn-accent w-full mt-8 max-w-[30rem] ">
+              Save Changes
+            </button>
           )}
         </form>
       </section>

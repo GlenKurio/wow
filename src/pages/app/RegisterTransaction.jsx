@@ -20,7 +20,7 @@ function RegisterTransaction() {
   }
 
   return (
-    <main className="px-4 pb-8">
+    <main className="px-4 pb-8 lg:max-w-[60vw] mx-auto">
       <MoveBackButton />
       <div className="join grid grid-cols-2">
         <button
