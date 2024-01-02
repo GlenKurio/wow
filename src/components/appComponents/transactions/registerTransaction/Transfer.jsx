@@ -157,7 +157,9 @@ function Transfer({ users, currentUserData }) {
             <span className="loading loading-spinner loading-xs"></span>
           </button>
         ) : (
-          <button className="btn btn-accent w-full mt-8">Send Transfer </button>
+          <button className="btn bg-gradient-to-r  from-[#8E2DE2] to-[#4A00E0] w-full mt-8">
+            Send Transfer{" "}
+          </button>
         )}
       </form>
     </section>

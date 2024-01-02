@@ -11,7 +11,7 @@ export function useDeleteTransaction() {
       toast.success("Transaction Successfully deleted");
       navigate("/app");
       queryClient.invalidateQueries({
-        queryKey: ["trnsactions"],
+        queryKey: ["trnsactions", "users"],
       });
     },
     onError: (err) => toast.error(err.message),

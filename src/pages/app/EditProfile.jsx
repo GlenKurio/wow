@@ -48,7 +48,7 @@ function EditProfile() {
         >
           <label className="form-control w-full max-w-[30rem]">
             <div className="label">
-              <span className="label-text text-lg font-semibold border-b-[1px] border-accent ">
+              <span className="label-text text-lg font-semibold  ">
                 Profile Image
               </span>
             </div>
@@ -77,7 +77,7 @@ function EditProfile() {
           </label>
           <label className="form-control w-full max-w-[30rem]">
             <div className="label">
-              <span className="label-text text-lg font-semibold border-b-[1px] border-accent">
+              <span className="label-text text-lg font-semibold ">
                 Full Name
               </span>
               {errors?.fullName?.message && (
@@ -100,9 +100,7 @@ function EditProfile() {
           </label>
           <label className="form-control w-full max-w-[30rem]">
             <div className="label">
-              <span className="label-text text-lg font-semibold border-b-[1px] border-accent">
-                Email
-              </span>
+              <span className="label-text text-lg font-semibold ">Email</span>
               {errors?.email?.message && (
                 <span className="label-text-alt  text-error-content bg-error py-1 px-2 rounded-full">
                   {errors.email.message}

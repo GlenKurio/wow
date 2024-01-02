@@ -3,7 +3,7 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     fontFamily: {
-      sans: "Quicksand, sans-serif",
+      sans: "Poppins, sans-serif",
     },
 
     extend: {},
@@ -13,14 +13,10 @@ export default {
       {
         business: {
           ...require("daisyui/src/theming/themes")["business"],
-          accent: "#B387FA",
-        },
-      },
-      {
-        businessLight: {
-          ...require("daisyui/src/theming/themes")["business"],
-          accent: "#B387FA",
-          "base-100": "white",
+          accent: "#8E2DE2",
+
+          "base-100": "#2e2e2e",
+          "base-content": "#F2EFEA",
         },
       },
     ],
