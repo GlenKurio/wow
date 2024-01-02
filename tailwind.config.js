@@ -6,7 +6,31 @@ export default {
       sans: "Poppins, sans-serif",
     },
 
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "hero-bg-blob-1": "url('/hero-blobs/blob1.svg')",
+        "hero-bg-blob-2": "url('/hero-blobs/blob2.svg')",
+        "hero-bg-blob-3": "url('/hero-blobs/blob3.svg')",
+        "hero-bg-blob-4": "url('/hero-blobs/blob4.svg')",
+      },
+      animation: {
+        "blob-1": "blob-1 10s linear infinite",
+      },
+      keyframes: {
+        "blob-1": {
+          "0%": {
+            transform: "rotate(0) translateX(0) translateY(0)",
+          },
+
+          "50%": {
+            transform: "rotate(180deg) translateX(50px) translateY(25px)",
+          },
+          "100%": {
+            transform: "rotate(-180deg) translateX(-50px) translateY(-25px)",
+          },
+        },
+      },
+    },
   },
   daisyui: {
     themes: [
