@@ -47,7 +47,7 @@ function Transfer({ users, currentUserData }) {
   }
 
   return (
-    <section className="flex-col w-[30rem] mx-auto">
+    <section className="flex-col max-w-[40rem] mx-auto">
       <h1 className="text-2xl font-bold mt-8 mb-4">Register new Transfer:</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
         <label className="form-control w-full max-w-[30rem]">
