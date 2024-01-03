@@ -39,15 +39,15 @@ function UserCard({ user }) {
             Balance with <span className="font-semibold">{user.fullName}</span>
           </div>
           <div className={`stat-value ${balanceStatusVariants[status]}`}>
-            {balance}$
+            {balance.toFixed(2)}$
           </div>
           <div className={`stat-desc ${balanceStatusVariants[status]}`}>
             {status === "even"
               ? `You and ${firstName} are even`
               : status === "owe"
-              ? `You owe ${firstName} ${balance} CAD`
+              ? `You owe ${firstName} ${balance.toFixed(2)} CAD`
               : status === "owes"
-              ? ` ${firstName} owes you ${balance} CAD`
+              ? ` ${firstName} owes you ${balance.toFixed(2)} CAD`
               : null}
           </div>
         </div>

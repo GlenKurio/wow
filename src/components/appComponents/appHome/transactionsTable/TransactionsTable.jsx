@@ -140,7 +140,7 @@ function TransactionsTable({ users, roomId }) {
                 «
               </button>
               <button className="join-item btn text-xl bg-accent/25 hover:bg-accent/35">
-                Page 22
+                Page 1
               </button>
               <button className="join-item btn text-xl bg-accent/25 hover:bg-accent/35">
                 »

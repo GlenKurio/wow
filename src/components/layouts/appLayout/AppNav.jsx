@@ -26,8 +26,12 @@ function AppNav({ currentUserData }) {
       </Modal>
       <div className="navbar bg-base-300 shadow-md">
         <div className="flex-1">
-          <Link to="/" className="btn btn-ghost text-xl">
-            WoW
+          <Link to="/" className="btn btn-ghost text-xl self-center ">
+            <img
+              className="max-w-[50px] max-h-[30px]"
+              src="/wow-icon.svg"
+              alt="who owess whom logo"
+            />
           </Link>
         </div>
         <div className="flex-none">

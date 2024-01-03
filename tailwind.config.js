@@ -12,6 +12,10 @@ export default {
         "hero-bg-blob-2": "url('/hero-blobs/blob2.svg')",
         "hero-bg-blob-3": "url('/hero-blobs/blob3.svg')",
         "hero-bg-blob-4": "url('/hero-blobs/blob4.svg')",
+        "bento-1": "url('/bento-grid/g-1.png')",
+        "bento-2": "url('/bento-grid/g-2.png')",
+        "bento-3": "url('/bento-grid/g-3.png')",
+        "bento-4": "url('/bento-grid/g-4.png')",
       },
       animation: {
         "blob-1": "blob-1 30s linear infinite ",
