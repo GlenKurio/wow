@@ -14,10 +14,10 @@ export default {
         "hero-bg-blob-4": "url('/hero-blobs/blob4.svg')",
       },
       animation: {
-        "blob-1": "blob-1 30s linear infinite both",
-        "blob-2": "blob-2 30s linear infinite both",
-        "blob-3": "blob-3 30s linear infinite both",
-        "blob-4": "blob-3 30s linear infinite both",
+        "blob-1": "blob-1 30s linear infinite ",
+        "blob-2": "blob-2 30s linear infinite ",
+        "blob-3": "blob-3 30s linear infinite ",
+        "blob-4": "blob-3 30s linear infinite ",
       },
       keyframes: {
         "blob-1": {
@@ -26,7 +26,7 @@ export default {
           },
 
           "50%": {
-            transform: "translateX(80%) translateY(-49%) rotate(180deg)",
+            transform: "translateX(450px) translateY(190px) rotate(180deg)",
           },
         },
         "blob-2": {
@@ -35,7 +35,7 @@ export default {
           },
 
           "50%": {
-            transform: "translateX(-35%) translateY(29%) rotate(270deg)",
+            transform: "translateX(-350px) translateY(-390px) rotate(270deg)",
           },
         },
         "blob-3": {
@@ -44,7 +44,7 @@ export default {
           },
 
           "50%": {
-            transform: "translateX(-65%) translateY(49%) rotate(270deg)",
+            transform: "translateX(450px) translateY(-350px) rotate(370deg)",
           },
         },
         "blob-4": {
@@ -53,7 +53,7 @@ export default {
           },
 
           "50%": {
-            transform: "translateX(-75%) translateY(-59%) rotate(270deg)",
+            transform: "translateX(-350px) translateY(390px) rotate(170deg)",
           },
         },
       },

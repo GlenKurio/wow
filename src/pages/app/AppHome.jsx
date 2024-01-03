@@ -20,7 +20,7 @@ function AppHome() {
 
   //TODO: Get transactions for transactions table with pagination
   return (
-    <main className="relative pb-16 xl:max-w-[60vw] mx-auto">
+    <main className="relative pb-16 2xl:max-w-[80vw] mx-auto">
       <ActionButton />
 
       <h2 className="px-6 text-2xl text-accent font-bold  capitalize tracking-[1px]  mt-8 mb-4">

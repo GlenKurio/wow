@@ -31,7 +31,6 @@ function AppNav({ currentUserData }) {
           </Link>
         </div>
         <div className="flex-none">
-          <ThemeController />
           <div className="dropdown dropdown-end ">
             <div
               tabIndex={0}
