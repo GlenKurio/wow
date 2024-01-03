@@ -2,6 +2,7 @@ import Hero from "../../../components/landingComponents/homePage/Hero";
 
 import FeaturedIn from "../../../components/landingComponents/homePage/FeaturedIn";
 import BentoLayout from "../../../components/landingComponents/homePage/BentoLayout";
+import Details from "../../../components/landingComponents/homePage/Details";
 function HomePage() {
   return (
     <main className=" min-h-screen p-4 relative overflow-hidden max-w-[1600px] mx-auto">
@@ -29,6 +30,7 @@ function HomePage() {
       <Hero />
       <FeaturedIn />
       <BentoLayout />
+      <Details />
     </main>
   );
 }

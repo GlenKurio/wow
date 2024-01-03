@@ -16,6 +16,7 @@ export default {
         "bento-2": "url('/bento-grid/g-2.png')",
         "bento-3": "url('/bento-grid/g-3.png')",
         "bento-4": "url('/bento-grid/g-4.png')",
+        details: "url('/screens.png')",
       },
       animation: {
         "blob-1": "blob-1 30s linear infinite ",

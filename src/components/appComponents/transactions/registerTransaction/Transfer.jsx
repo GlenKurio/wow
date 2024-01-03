@@ -50,7 +50,7 @@ function Transfer({ users, currentUserData }) {
     <section className="flex-col max-w-[40rem] mx-auto">
       <h1 className="text-2xl font-bold mt-8 mb-4">Register new Transfer:</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
-        <label className="form-control w-full max-w-[30rem]">
+        <label className="form-control w-full ">
           <div className="label">
             <span className="label-text text-lg font-semibold">
               Amount<span className="text-error">*</span>
@@ -70,12 +70,12 @@ function Transfer({ users, currentUserData }) {
             placeholder="Amount of transfer"
             className={
               errors?.amount?.message
-                ? " input input-bordered input-error w-full max-w-[30rem]"
-                : " input input-bordered  w-full max-w-[30rem]"
+                ? " input input-bordered input-error w-full "
+                : " input input-bordered  w-full "
             }
           />
         </label>
-        <label className="form-control w-full max-w-[30rem]">
+        <label className="form-control w-full ">
           <div className="label">
             <span className="label-text text-lg font-semibold">
               Title<span className="text-error">*</span>
@@ -92,12 +92,12 @@ function Transfer({ users, currentUserData }) {
             placeholder="Title of transfer"
             className={
               errors?.title?.message
-                ? " input input-bordered input-error w-full max-w-[30rem]"
-                : " input input-bordered  w-full max-w-[30rem]"
+                ? " input input-bordered input-error w-full "
+                : " input input-bordered  w-full "
             }
           />
         </label>
-        <label className="form-control w-full max-w-[30rem] flex flex-col gap-4">
+        <label className="form-control w-full flex flex-col gap-4">
           <div className="label">
             <span className="label-text text-lg font-semibold">
               Send transfer to<span className="text-error">*</span>
@@ -128,7 +128,7 @@ function Transfer({ users, currentUserData }) {
           </label>
         ))}
 
-        <label className="form-control w-full max-w-[30rem]">
+        <label className="form-control w-full ">
           <div className="label">
             <span className="label-text text-lg font-semibold">
               Description
@@ -138,16 +138,16 @@ function Transfer({ users, currentUserData }) {
             {...register("description")}
             type="text"
             placeholder="Description of transfer"
-            className="textarea textarea-bordered w-full max-w-[30rem] h-24"
+            className="textarea textarea-bordered w-full  h-24"
           />
         </label>
-        <label className="form-control w-full max-w-[30rem]">
+        <label className="form-control w-full ">
           <div className="label">
             <span className="label-text text-lg font-semibold">Image</span>
           </div>
           <input
             type="file"
-            className="file-input file-input-bordered w-full max-w-[30rem] "
+            className="file-input file-input-bordered w-full "
             onChange={handleImageChange}
           />
         </label>
