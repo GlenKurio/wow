@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 
 const medias = [
-  "/public/media/forbes.png",
-  "/public/media/fortune.png",
-  "/public/media/nyt.png",
-  "/public/media/usa-today.png",
-  "/public/media/vogue.png",
-  "/public/media/wsj.png",
+  "/media/forbes.png",
+  "/media/fortune.png",
+  "/media/nyt.png",
+  "/media/usa-today.png",
+  "/media/vogue.png",
+  "/media/wsj.png",
 ];
 
 function FeaturedIn() {
