@@ -14,19 +14,46 @@ export default {
         "hero-bg-blob-4": "url('/hero-blobs/blob4.svg')",
       },
       animation: {
-        "blob-1": "blob-1 10s linear infinite",
+        "blob-1": "blob-1 30s linear infinite both",
+        "blob-2": "blob-2 30s linear infinite both",
+        "blob-3": "blob-3 30s linear infinite both",
+        "blob-4": "blob-3 30s linear infinite both",
       },
       keyframes: {
         "blob-1": {
-          "0%": {
-            transform: "rotate(0) translateX(0) translateY(0)",
+          "0%, 100%": {
+            transform: "transalteX(0)",
           },
 
           "50%": {
-            transform: "rotate(180deg) translateX(50px) translateY(25px)",
+            transform: "translateX(80%) translateY(-49%) rotate(180deg)",
           },
-          "100%": {
-            transform: "rotate(-180deg) translateX(-50px) translateY(-25px)",
+        },
+        "blob-2": {
+          "0%, 100%": {
+            transform: "transalteX(0)",
+          },
+
+          "50%": {
+            transform: "translateX(-35%) translateY(29%) rotate(270deg)",
+          },
+        },
+        "blob-3": {
+          "0%, 100%": {
+            transform: "transalteX(0) transalteY(0)",
+          },
+
+          "50%": {
+            transform: "translateX(-65%) translateY(49%) rotate(270deg)",
+          },
+        },
+        "blob-4": {
+          "0%, 100%": {
+            transform: "transalteX(0) transalteY(0)",
+          },
+
+          "50%": {
+            transform: "translateX(-75%) translateY(-59%) rotate(270deg)",
           },
         },
       },
