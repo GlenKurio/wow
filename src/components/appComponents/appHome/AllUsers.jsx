@@ -1,8 +1,9 @@
 import { useCurrentUserData } from "../../../hooks/useGetCurrentUserData";
+import { useGetTransactions } from "../../../hooks/useGetTransactions";
 import InviteUserCard from "../inviteUser/InviteUserCard";
 
 import UserCard from "./UserCard";
-// TODO: get all users in room, add UI to show personal info of user
+// TODO: make real info to display ; REDESIGN the stats
 
 function AllUsers({ users }) {
   const { currentUserData } = useCurrentUserData();

@@ -3,13 +3,13 @@ import { useQuery } from "@tanstack/react-query";
 
 export function useGetTransactions(roomId) {
   const {
-    isLoading,
+    isLoading: isLoadingTransactions,
     data: transactions,
-    error,
+    error: transactionsError,
   } = useQuery({
     queryKey: ["transactions", roomId],
     queryFn: () => apiGetTransactions({ roomId }),
   });
 
-  return { isLoading, transactions, error };
+  return { isLoadingTransactions, transactions, transactionsError };
 }

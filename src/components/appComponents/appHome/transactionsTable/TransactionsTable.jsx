@@ -1,19 +1,11 @@
 import { Link } from "react-router-dom";
 import AvatarGroup from "./AvatarGroup";
-import { useGetTransactions } from "../../../../hooks/useGetTransactions";
-import { toast } from "react-hot-toast";
 
-function TransactionsTable({ users, roomId }) {
+function TransactionsTable({ users, transactions }) {
   const transactionTypes = {
     transfer: "text-warning ",
     expense: "text-error",
   };
-  const { isLoading, error, transactions } = useGetTransactions(roomId);
-  if (error) toast.error(error.message);
-  // TODO: add skeleton here:
-  if (isLoading) {
-    return <span className="loading loading-dots loading-lg"></span>;
-  }
 
   // get user info for transaction
   function getUserInfo(transaction) {
@@ -163,13 +155,15 @@ function TransactionsTable({ users, roomId }) {
                 <th>More Info</th>
               </tr>
             </thead>
-            <tr>
-              <td colSpan={6}>
-                <p className="text-center font-bold text-xl">
-                  No transactions to show yet
-                </p>
-              </td>
-            </tr>
+            <tbody>
+              <tr>
+                <td colSpan={6}>
+                  <p className="text-center font-bold text-xl">
+                    No transactions to show yet
+                  </p>
+                </td>
+              </tr>
+            </tbody>
           </table>
         </div>
       )}

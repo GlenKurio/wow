@@ -41,10 +41,9 @@ function Details() {
           transition={{ duration: 1, delay: 0.4 }}
           className="text-lg font-[300] tracking-[1px]"
         >
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci
-          amet veritatis, necessitatibus reprehenderit non illo excepturi in
-          natus dolorum sint eaque doloremque esse recusandae qui dolores ipsa a
-          quasi sit?
+          At WOW, we've redefined the way you manage group finances, making life
+          simpler and more efficient. Our app revolutionizes the management of
+          shared expenses and debts, offering a range of advantages.
         </motion.p>
         <motion.button
           variants={{

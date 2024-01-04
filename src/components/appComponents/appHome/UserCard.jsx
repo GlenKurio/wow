@@ -1,13 +1,23 @@
 import { useCurrentUserData } from "../../../hooks/useGetCurrentUserData";
+import { useGetTransactions } from "../../../hooks/useGetTransactions";
 
 function UserCard({ user }) {
   //TODO: show balance with currentUser
   const { currentUserData } = useCurrentUserData();
   const currentUserUid = currentUserData.uid;
-  console.log(user);
+  const { transactions } = useGetTransactions(currentUserData.roomId);
+
   const balance = user[currentUserUid];
   const firstName = user.fullName.split(" ")[0];
-  console.log("balance:", balance);
+  console.log(transactions);
+  const allUserTransactions = transactions.filter((transaction) => {
+    return transaction.author == user.uid;
+  });
+
+  const totalTransactionsSum = allUserTransactions.reduce((acc, t) => {
+    return acc + t.total;
+  }, 0);
+
   function balanceStatus(balance) {
     let status;
     if (balance == 0) return (status = "even");
@@ -39,7 +49,7 @@ function UserCard({ user }) {
             Balance with <span className="font-semibold">{user.fullName}</span>
           </div>
           <div className={`stat-value ${balanceStatusVariants[status]}`}>
-            {balance.toFixed(2)}$
+            {balance.toFixed(2)} <span>$</span>
           </div>
           <div className={`stat-desc ${balanceStatusVariants[status]}`}>
             {status === "even"
@@ -53,12 +63,14 @@ function UserCard({ user }) {
         </div>
         <div className="stat">
           <div className="stat-title">Total Transactions</div>
-          <div className="stat-value">{user.totalTransactions}</div>
-          <div className="stat-desc">21% more than last month</div>
+          <div className="stat-value text-primary">
+            {user.totalTransactions}
+          </div>
+          <div className="stat-desc text-primary">21% more than last month</div>
         </div>
         <div className="stat">
-          <div className="stat-title">Total Transactions Amount This Month</div>
-          <div className="stat-value">{user.totalTransactions}</div>
+          <div className="stat-title ">Total Transactions Amount</div>
+          <div className="stat-value ">{totalTransactionsSum} $</div>
           <div className="stat-desc">21% more than last month</div>
         </div>
       </div>

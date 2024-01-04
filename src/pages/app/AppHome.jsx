@@ -1,16 +1,19 @@
 import ActionButton from "../../components/appComponents/appHome/ActionButton";
 import AllUsers from "../../components/appComponents/appHome/AllUsers";
+import CurrentUserStats from "../../components/appComponents/appHome/CurrentUserStats";
 import TransactionsTable from "../../components/appComponents/appHome/transactionsTable/TransactionsTable";
+import { useGetTransactions } from "../../hooks/useGetTransactions";
 import { useGetUsers } from "../../hooks/useGetUsers";
 import { useOutletContext } from "react-router-dom";
 
 function AppHome() {
   const currentUserData = useOutletContext();
   const roomId = currentUserData.roomId;
-
+  const { isLoadingTransactions, transactionsError, transactions } =
+    useGetTransactions(roomId);
   const { isLoading, error, users } = useGetUsers(roomId);
   // TODO: display skeleton here
-  if (isLoading) {
+  if (isLoading || isLoadingTransactions) {
     return (
       <div className="min-h-screen grid place-content-center">
         <span className="loading loading-dots loading-lg loading-accent"></span>
@@ -22,7 +25,7 @@ function AppHome() {
   return (
     <main className="relative pb-16 2xl:max-w-[80vw] mx-auto">
       <ActionButton />
-
+      <CurrentUserStats />
       <h2 className="px-6 text-2xl text-accent font-bold  capitalize tracking-[1px]  mt-8 mb-4">
         Your balances
       </h2>
@@ -31,7 +34,7 @@ function AppHome() {
         Transactions
       </h2>
 
-      <TransactionsTable roomId={roomId} users={users} />
+      <TransactionsTable transactions={transactions} users={users} />
     </main>
   );
 }
