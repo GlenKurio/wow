@@ -12,9 +12,12 @@ function Signup({ roomId }) {
     signup({ fullName, email, password, roomId });
   }
   return (
-    <section>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label className="form-control w-full max-w-[30rem]">
+    <div className=" w-full flex justify-center mb-16">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col items-center w-full lg:w-[50%] gap-4"
+      >
+        <label className="form-control w-full">
           <div className="label">
             <span className="label-text text-lg font-semibold">
               Full Name<span className="text-error">*</span>
@@ -33,12 +36,12 @@ function Signup({ roomId }) {
             placeholder="Your full name"
             className={
               errors?.fullName?.message
-                ? " input input-bordered input-error w-full max-w-[30rem]"
-                : " input input-bordered  w-full max-w-[30rem]"
+                ? " input input-bordered input-error w-full "
+                : " input input-bordered  w-full "
             }
           />
         </label>
-        <label className="form-control w-full max-w-[30rem]">
+        <label className="form-control w-full ">
           <div className="label">
             <span className="label-text text-lg font-semibold">
               Email<span className="text-error">*</span>
@@ -61,12 +64,12 @@ function Signup({ roomId }) {
             placeholder="Your email"
             className={
               errors?.email?.message
-                ? " input input-bordered input-error w-full max-w-[30rem]"
-                : " input input-bordered  w-full max-w-[30rem]"
+                ? " input input-bordered input-error w-full "
+                : " input input-bordered  w-full ]"
             }
           />
         </label>
-        <label className="form-control w-full max-w-[30rem] relative ">
+        <label className="form-control w-full  relative ">
           <div className="label">
             <span className="label-text text-lg font-semibold">
               Password<span className="text-error">*</span>
@@ -89,8 +92,8 @@ function Signup({ roomId }) {
             placeholder="Your password"
             className={
               errors?.password?.message
-                ? " input input-bordered input-error w-full max-w-[30rem] "
-                : " input input-bordered  w-full max-w-[30rem]  "
+                ? " input input-bordered input-error w-full "
+                : " input input-bordered  w-full "
             }
           />
           <div
@@ -135,7 +138,7 @@ function Signup({ roomId }) {
             )}
           </div>
         </label>
-        <label className="form-control w-full max-w-[30rem]">
+        <label className="form-control w-full ">
           <div className="label">
             <span className="label-text text-lg font-semibold">
               Confirm password<span className="text-error">*</span>
@@ -160,8 +163,8 @@ function Signup({ roomId }) {
             placeholder="Confirm your password"
             className={
               errors?.confirmPassword?.message
-                ? " input input-bordered input-error w-full max-w-[30rem] "
-                : " input input-bordered  w-full max-w-[30rem]  "
+                ? " input input-bordered input-error w-full "
+                : " input input-bordered  w-full "
             }
           />
         </label>
@@ -173,7 +176,7 @@ function Signup({ roomId }) {
           <button className="btn btn-accent w-full mt-8">Signup</button>
         )}
       </form>
-    </section>
+    </div>
   );
 }
 

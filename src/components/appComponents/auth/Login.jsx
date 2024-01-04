@@ -11,9 +11,12 @@ function Login() {
     login({ email, password });
   }
   return (
-    <section>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label className="form-control w-full max-w-[30rem]">
+    <div className=" w-full flex justify-center mb-16">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col items-center w-full lg:w-[50%] gap-4"
+      >
+        <label className="form-control w-full ">
           <div className="label">
             <span className="label-text text-lg font-semibold">
               Email<span className="text-error">*</span>
@@ -36,12 +39,12 @@ function Login() {
             placeholder="Your email"
             className={
               errors?.email?.message
-                ? " input input-bordered input-error w-full max-w-[30rem]"
-                : " input input-bordered  w-full max-w-[30rem]"
+                ? " input input-bordered input-error w-full "
+                : " input input-bordered  w-full "
             }
           />
         </label>
-        <label className="form-control w-full max-w-[30rem] relative ">
+        <label className="form-control w-full  relative ">
           <div className="label">
             <span className="label-text text-lg font-semibold">
               Password<span className="text-error">*</span>
@@ -64,8 +67,8 @@ function Login() {
             placeholder="Your password"
             className={
               errors?.password?.message
-                ? " input input-bordered input-error w-full max-w-[30rem] "
-                : " input input-bordered  w-full max-w-[30rem]  "
+                ? " input input-bordered input-error w-full  "
+                : " input input-bordered  w-full   "
             }
           />
           <div
@@ -111,14 +114,14 @@ function Login() {
           </div>
         </label>
         {isLoading ? (
-          <button className="btn btn-accent w-full mt-8">
+          <button className="btn btn-accent w-full mt-8 lg:mx-auto lg:w-[50%]">
             <span className="loading loading-spinner loading-xs"></span>
           </button>
         ) : (
-          <button className="btn btn-accent w-full mt-8">Login</button>
+          <button className="btn btn-accent w-full mt-8 ">Login</button>
         )}
       </form>
-    </section>
+    </div>
   );
 }
 

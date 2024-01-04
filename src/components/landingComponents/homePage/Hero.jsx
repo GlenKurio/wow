@@ -2,7 +2,10 @@ import { Link } from "react-router-dom";
 import Reveal from "../../animations/Reveal";
 function Hero() {
   return (
-    <section className="flex flex-col items-center mt-16 gap-4">
+    <section
+      className="flex flex-col items-center mt-32
+     gap-4"
+    >
       <Reveal delay={0.1}>
         <figure className="max-w-[70px]">
           <img src="/logo.png" alt="logo of who owes whom" />
