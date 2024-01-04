@@ -3,6 +3,8 @@ import Hero from "../../../components/landingComponents/homePage/Hero";
 import FeaturedIn from "../../../components/landingComponents/homePage/FeaturedIn";
 import BentoLayout from "../../../components/landingComponents/homePage/BentoLayout";
 import Details from "../../../components/landingComponents/homePage/Details";
+import Reviews from "../../../components/landingComponents/homePage/Reviews";
+import GetStarted from "../../../components/landingComponents/homePage/GetStarted";
 function HomePage() {
   return (
     <main className=" min-h-screen p-4 relative overflow-hidden max-w-[1600px] mx-auto">
@@ -31,6 +33,8 @@ function HomePage() {
       <FeaturedIn />
       <BentoLayout />
       <Details />
+      <Reviews />
+      <GetStarted />
     </main>
   );
 }

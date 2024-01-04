@@ -9,7 +9,7 @@ function Hero() {
         </figure>
       </Reveal>
       <Reveal delay={0.3}>
-        <h1 className="font-bold text-4xl text-center lg:text-6xl bg-gradient-to-r from-[#8E2DE2] to-[#4A00E0] bg-clip-text text-transparent p-2 drop-shadow-lg ">
+        <h1 className="font-bold text-4xl text-center lg:text-6xl text-base-content p-2 drop-shadow-lg ">
           The easiest way to manage group finances
         </h1>
       </Reveal>
