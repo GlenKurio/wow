@@ -1,4 +1,5 @@
 import ReviewCard from "./ReviewCard";
+import { motion } from "framer-motion";
 const reviews = [
   {
     fullName: "Alice Johnson",
@@ -58,7 +59,25 @@ function Reviews() {
       </h3>
       <div className="flex flex-wrap gap-8 justify-center">
         {reviews.map((review, idx) => (
-          <ReviewCard review={review} key={idx} />
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 50 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.5,
+              delay: 0.1 * idx,
+              type: "spring",
+              mass: 15,
+              stiffness: 500,
+              damping: 90,
+            }}
+          >
+            <ReviewCard review={review} key={idx} />
+          </motion.div>
         ))}
       </div>
     </section>

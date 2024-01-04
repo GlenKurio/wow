@@ -5,6 +5,7 @@ import BentoLayout from "../../../components/landingComponents/homePage/BentoLay
 import Details from "../../../components/landingComponents/homePage/Details";
 import Reviews from "../../../components/landingComponents/homePage/Reviews";
 import GetStarted from "../../../components/landingComponents/homePage/GetStarted";
+
 function HomePage() {
   return (
     <main className=" min-h-screen p-4 relative overflow-hidden max-w-[1600px] mx-auto">
