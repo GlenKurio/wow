@@ -20,8 +20,7 @@ export function getTransactionsPercent(transactions) {
 
   const numberOfTransactionsThisMonth = transactionsThisMonth.length;
   const numberOfTransactionsLastMonth = transactionsLastMonth.length;
-  console.log("transactions this month:", numberOfTransactionsThisMonth);
-  console.log("transactions last month:", numberOfTransactionsLastMonth);
+
   let percent;
   if (numberOfTransactionsLastMonth > 0) {
     percent =

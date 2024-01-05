@@ -70,9 +70,11 @@ export default {
         business: {
           ...require("daisyui/src/theming/themes")["business"],
           accent: "#8E2DE2",
-
-          "base-100": "#2e2e2e",
+          "base-100": "#363537",
           "base-content": "#F2EFEA",
+          success: "#2FBF71",
+          warning: "#ED7D3A",
+          error: "#EF2D56",
         },
       },
     ],

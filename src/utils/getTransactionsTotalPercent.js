@@ -24,7 +24,7 @@ export function getTransactionsTotalPercent(transactions) {
     },
     0
   );
-  console.log("transactions TOTAL this month:", totalOfTransactionsThisMonth);
+
   const totalOfTransactionsLastMonth = transactionsLastMonth.reduce(
     (acc, t) => {
       return acc + t.total;
@@ -32,7 +32,6 @@ export function getTransactionsTotalPercent(transactions) {
     0
   );
 
-  console.log("transactions TOTAL last month:", totalOfTransactionsLastMonth);
   let percentTotal;
   if (totalOfTransactionsLastMonth > 0) {
     percentTotal =

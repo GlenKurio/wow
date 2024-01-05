@@ -45,7 +45,7 @@ function UserCard({ user }) {
 
   return (
     <article className="flex ">
-      <div className="stats shadow">
+      <div className="stats shadow py-2">
         <div className="stat">
           <div className="avatar ">
             <div className="w-16 h-16 rounded-full">
@@ -53,7 +53,7 @@ function UserCard({ user }) {
             </div>
           </div>
         </div>
-        <div className="stat min-w-[275px]">
+        <div className="stat ">
           <div className="stat-title">
             <span className="font-semibold">{user.fullName}</span>
           </div>
@@ -74,34 +74,41 @@ function UserCard({ user }) {
           <div className="stat-title">Transactions this month</div>
           <div className="stat-value ">{user.totalTransactions}</div>
           <div className="stat-desc ">
-            {/* TODO: Display correct wor for negative and positive values */}
-            {percent}% more than last month
+            {` ${Math.abs(percent)}% ${
+              percent >= 0 ? "more" : "less"
+            } than last month `}
           </div>
         </div>
         <div className="stat">
-          <div className="stat-title ">Expenses Total this month</div>
-          <div className="stat-value text-[#FFA630]">
-            {formatExpenseTotal} $
+          <div className="stat-title ">
+            <span className="text-[#4472CA]">Expenses</span> Total this month
           </div>
+          <div className="stat-value">{formatExpenseTotal} $</div>
           <div className="stat-desc ">
             From {expensesCount} registered{" "}
             {expensesCount == 1 ? "expense" : "expenses"}
           </div>
         </div>
         <div className="stat">
-          <div className="stat-title ">Transfers Total this month</div>
-          <div className="stat-value text-[#388697]">
-            {formatTransfersTotal} $
+          <div className="stat-title ">
+            <span className="text-[#A288E3]">Transfers</span> Total this month
           </div>
-          <div className="stat-desc ">
+          <div className="stat-value ">{formatTransfersTotal} $</div>
+          <div className="stat-desc">
             From {transfersCount} registered{" "}
             {transfersCount == 1 ? "transfer" : "transfers"}
           </div>
         </div>
         <div className="stat">
           <div className="stat-title ">Transactions Total this month</div>
-          <div className="stat-value ">{totalTransactionsSum} $</div>
-          <div className="stat-desc">{percentTotal}% more than last month</div>
+          <div className="stat-value text-base-content">
+            {totalTransactionsSum} $
+          </div>
+          <div className="stat-desc">
+            {` ${Math.abs(percentTotal)}% ${
+              percentTotal >= 0 ? "more" : "less"
+            } than last month `}
+          </div>
         </div>
       </div>
     </article>

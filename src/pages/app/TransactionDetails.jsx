@@ -19,6 +19,26 @@ function TransactionDetails() {
     (user) => user.uid === transactionData.author
   );
 
+  function getUsersNames() {
+    let usersTo = [];
+    const participants = transactionData.participants;
+    const recipient = transactionData.recipient;
+    if (recipient && !participants) {
+      const foundUser = users.find((user) => user.uid === recipient);
+      if (foundUser) {
+        usersTo.push(foundUser);
+      }
+    } else if (!recipient && participants) {
+      usersTo = participants.map((participant) => {
+        const foundUser = users.find((user) => user.uid === participant);
+        return foundUser ? foundUser : null;
+      });
+    }
+
+    return usersTo;
+  }
+
+  const usersTo = getUsersNames();
   return (
     <main className="min-h-screen px-4 pb-28 lg:max-w-[60vw] mx-auto">
       {currentUserData.uid === transactionData.author ? (
@@ -60,8 +80,8 @@ function TransactionDetails() {
             <span
               className={
                 transactionData.type === "transfer"
-                  ? "text-warning-content bg-warning px-4 py-1 rounded-full text-sm max-w-[150px] "
-                  : " text-error-content bg-error px-4 py-1 rounded-full text-sm max-w-[150px]  "
+                  ? " bg-[#A288E3] px-4 py-1 rounded-full text-sm max-w-[150px] "
+                  : "  bg-[#4472CA] px-4 py-1 rounded-full text-sm max-w-[150px]  "
               }
             >
               {transactionData.type}
@@ -116,8 +136,21 @@ function TransactionDetails() {
               Split with:
             </p>
           )}
-          <div className="py-2 ">
-            <AvatarGroup transaction={transactionData} users={users} />
+          <div className="py-2 flex gap-4">
+            {usersTo.map((user) => (
+              <div
+                className="tooltip  tooltip-accent "
+                data-tip={user.fullName}
+              >
+                <div className="avatar">
+                  <div className="w-10 rounded-full">
+                    <img
+                      src={user.profilePicURL || "/avatar-placeholder.png"}
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
         <div className="flex items-center md:justify-between flex-col md:flex-row border-b-[1px] border-secondary/50 py-2 ">

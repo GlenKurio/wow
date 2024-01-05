@@ -25,13 +25,16 @@ function AppHome() {
   return (
     <main className="relative pb-16 2xl:max-w-[80vw] mx-auto">
       <ActionButton />
-      <CurrentUserStats transactions={transactions} />
-      <h2 className="px-6 text-2xl text-accent font-bold  capitalize tracking-[1px]  mt-8 mb-4">
-        Your balances
+      <h2 className="px-6 text-3xl lg:text-4xl text-accent font-bold  capitalize tracking-[1px]  mt-8 lg:mt-16 mb-4">
+        Your stats:
+      </h2>
+      <CurrentUserStats transactions={transactions} users={users} />
+      <h2 className="px-6 text-3xl lg:text-4xl text-accent font-bold  capitalize tracking-[1px]  mt-8 mb-4">
+        Balances:
       </h2>
       <AllUsers users={users} />
-      <h2 className="px-6 text-2xl text-accent font-bold  capitalize tracking-[1px] mt-16 mb-4">
-        Transactions
+      <h2 className="px-6 text-3xl lg:text-4xl text-accent font-bold  capitalize tracking-[1px] mt-16 mb-4">
+        Transactions history:
       </h2>
 
       <TransactionsTable transactions={transactions} users={users} />

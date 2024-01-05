@@ -3,8 +3,8 @@ import AvatarGroup from "./AvatarGroup";
 
 function TransactionsTable({ users, transactions }) {
   const transactionTypes = {
-    transfer: "text-warning ",
-    expense: "text-error",
+    transfer: "text-[#A288E3] ",
+    expense: "text-[#4472CA]",
   };
 
   // get user info for transaction
