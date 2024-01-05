@@ -25,7 +25,7 @@ function AppHome() {
   return (
     <main className="relative pb-16 2xl:max-w-[80vw] mx-auto">
       <ActionButton />
-      <CurrentUserStats />
+      <CurrentUserStats transactions={transactions} />
       <h2 className="px-6 text-2xl text-accent font-bold  capitalize tracking-[1px]  mt-8 mb-4">
         Your balances
       </h2>
