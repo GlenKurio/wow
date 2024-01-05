@@ -1,5 +1,6 @@
 import { useCurrentUserData } from "../../../hooks/useGetCurrentUserData";
 import { useGetTransactions } from "../../../hooks/useGetTransactions";
+import { getTotalTransactionsSumThisMonth } from "../../../utils/getTotalTransactionSumThisMonth";
 import { getTransactionsPercent } from "../../../utils/getTransactionsPercent";
 import { getTransactionsTotalPercent } from "../../../utils/getTransactionsTotalPercent";
 
@@ -18,10 +19,8 @@ function UserCard({ user }) {
 
   const percent = getTransactionsPercent(allUserTransactions);
   const percentTotal = getTransactionsTotalPercent(allUserTransactions);
-  const totalTransactionsSum = allUserTransactions.reduce((acc, t) => {
-    return acc + t.total;
-  }, 0);
-
+  const totalTransactionsSum =
+    getTotalTransactionsSumThisMonth(allUserTransactions);
   function balanceStatus(balance) {
     let status;
     if (balance == 0) return (status = "even");

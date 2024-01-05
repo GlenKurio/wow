@@ -67,7 +67,8 @@ function Transfer({ users, currentUserData }) {
               validate: (value) => value > 0 || "Amount must be bigger than 0",
             })}
             type="number"
-            placeholder="Amount of transfer"
+            placeholder="0.00"
+            step="0.01"
             className={
               errors?.amount?.message
                 ? " input input-bordered input-error w-full "
