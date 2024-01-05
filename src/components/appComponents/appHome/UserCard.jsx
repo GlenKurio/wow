@@ -1,6 +1,7 @@
 import { useCurrentUserData } from "../../../hooks/useGetCurrentUserData";
 import { useGetTransactions } from "../../../hooks/useGetTransactions";
 import { getTransactionsPercent } from "../../../utils/getTransactionsPercent";
+import { getTransactionsTotalPercent } from "../../../utils/getTransactionsTotalPercent";
 
 function UserCard({ user }) {
   //TODO: show balance with currentUser
@@ -16,7 +17,7 @@ function UserCard({ user }) {
   });
 
   const percent = getTransactionsPercent(allUserTransactions);
-
+  const percentTotal = getTransactionsTotalPercent(allUserTransactions);
   const totalTransactionsSum = allUserTransactions.reduce((acc, t) => {
     return acc + t.total;
   }, 0);
@@ -76,7 +77,7 @@ function UserCard({ user }) {
         <div className="stat">
           <div className="stat-title ">Total Transactions Amount</div>
           <div className="stat-value ">{totalTransactionsSum} $</div>
-          <div className="stat-desc">21% more than last month</div>
+          <div className="stat-desc">{percentTotal}% more than last month</div>
         </div>
       </div>
     </article>

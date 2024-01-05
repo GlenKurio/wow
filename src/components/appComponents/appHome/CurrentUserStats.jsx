@@ -2,6 +2,7 @@
 
 import { useCurrentUserData } from "../../../hooks/useGetCurrentUserData";
 import { getTransactionsPercent } from "../../../utils/getTransactionsPercent";
+import { getTransactionsTotalPercent } from "../../../utils/getTransactionsTotalPercent";
 
 function CurrentUserStats({ transactions }) {
   const { currentUserData } = useCurrentUserData();
@@ -9,9 +10,11 @@ function CurrentUserStats({ transactions }) {
     return transaction.author == currentUserData.uid;
   });
   const percent = getTransactionsPercent(allUserTransactions);
+  const percentTotal = getTransactionsTotalPercent(allUserTransactions);
   return (
     <article>
       Current User Stats <span>{percent}%</span>
+      Current User Stats <span>{percentTotal}% TOTAL</span>
     </article>
   );
 }
