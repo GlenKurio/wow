@@ -1,8 +1,10 @@
 import { useCurrentUserData } from "../../../hooks/useGetCurrentUserData";
 import { useGetTransactions } from "../../../hooks/useGetTransactions";
+import { getExpensesTotal } from "../../../utils/getExpensesTotal";
 import { getTotalTransactionsSumThisMonth } from "../../../utils/getTotalTransactionSumThisMonth";
 import { getTransactionsPercent } from "../../../utils/getTransactionsPercent";
 import { getTransactionsTotalPercent } from "../../../utils/getTransactionsTotalPercent";
+import { getTransfersTotal } from "../../../utils/getTransfersTotal";
 
 function UserCard({ user }) {
   //TODO: show balance with currentUser
@@ -21,6 +23,10 @@ function UserCard({ user }) {
   const percentTotal = getTransactionsTotalPercent(allUserTransactions);
   const totalTransactionsSum =
     getTotalTransactionsSumThisMonth(allUserTransactions);
+  const { formatExpenseTotal, expensesCount } =
+    getExpensesTotal(allUserTransactions);
+  const { formatTransfersTotal, transfersCount } =
+    getTransfersTotal(allUserTransactions);
   function balanceStatus(balance) {
     let status;
     if (balance == 0) return (status = "even");
@@ -49,7 +55,7 @@ function UserCard({ user }) {
         </div>
         <div className="stat min-w-[275px]">
           <div className="stat-title">
-            Balance with <span className="font-semibold">{user.fullName}</span>
+            <span className="font-semibold">{user.fullName}</span>
           </div>
           <div className={`stat-value ${balanceStatusVariants[status]}`}>
             {balance.toFixed(2)} <span>$</span>
@@ -65,16 +71,35 @@ function UserCard({ user }) {
           </div>
         </div>
         <div className="stat">
-          <div className="stat-title">Total Transactions</div>
-          <div className="stat-value text-primary">
-            {user.totalTransactions}
-          </div>
-          <div className="stat-desc text-primary">
+          <div className="stat-title">Transactions this month</div>
+          <div className="stat-value ">{user.totalTransactions}</div>
+          <div className="stat-desc ">
+            {/* TODO: Display correct wor for negative and positive values */}
             {percent}% more than last month
           </div>
         </div>
         <div className="stat">
-          <div className="stat-title ">Total Transactions Amount</div>
+          <div className="stat-title ">Expenses Total this month</div>
+          <div className="stat-value text-[#FFA630]">
+            {formatExpenseTotal} $
+          </div>
+          <div className="stat-desc ">
+            From {expensesCount} registered{" "}
+            {expensesCount == 1 ? "expense" : "expenses"}
+          </div>
+        </div>
+        <div className="stat">
+          <div className="stat-title ">Transfers Total this month</div>
+          <div className="stat-value text-[#388697]">
+            {formatTransfersTotal} $
+          </div>
+          <div className="stat-desc ">
+            From {transfersCount} registered{" "}
+            {transfersCount == 1 ? "transfer" : "transfers"}
+          </div>
+        </div>
+        <div className="stat">
+          <div className="stat-title ">Transactions Total this month</div>
           <div className="stat-value ">{totalTransactionsSum} $</div>
           <div className="stat-desc">{percentTotal}% more than last month</div>
         </div>
