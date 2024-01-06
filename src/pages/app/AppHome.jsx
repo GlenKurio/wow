@@ -1,6 +1,7 @@
 import ActionButton from "../../components/appComponents/appHome/ActionButton";
 import AllUsers from "../../components/appComponents/appHome/AllUsers";
 import CurrentUserStats from "../../components/appComponents/appHome/CurrentUserStats";
+import TimeRangeSelector from "../../components/appComponents/appHome/TimeRangeSelector";
 import TransactionsTable from "../../components/appComponents/appHome/transactionsTable/TransactionsTable";
 import { useGetTransactions } from "../../hooks/useGetTransactions";
 import { useGetUsers } from "../../hooks/useGetUsers";
@@ -25,9 +26,10 @@ function AppHome() {
   return (
     <main className="relative pb-16 2xl:max-w-[80vw] mx-auto">
       <ActionButton />
-      <h2 className="px-6 text-3xl lg:text-4xl text-accent font-bold  capitalize tracking-[1px]  mt-8 lg:mt-16 mb-4">
-        Your stats:
-      </h2>
+      <div className="flex items-center gap-4 m-4">
+        <p>Show stats for: </p>
+        <TimeRangeSelector />
+      </div>
       <CurrentUserStats transactions={transactions} users={users} />
       <h2 className="px-6 text-3xl lg:text-4xl text-accent font-bold  capitalize tracking-[1px]  mt-8 mb-4">
         Balances:
