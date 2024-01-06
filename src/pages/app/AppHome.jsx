@@ -26,8 +26,8 @@ function AppHome() {
   return (
     <main className="relative pb-16 2xl:max-w-[80vw] mx-auto">
       <ActionButton />
-      <div className="flex items-center gap-4 m-4">
-        <p>Show stats for: </p>
+      <div className="flex items-center  gap-4 m-4">
+        <p className="font-[300] tracking-[1px]">Showing stats for: </p>
         <TimeRangeSelector />
       </div>
       <CurrentUserStats transactions={transactions} users={users} />

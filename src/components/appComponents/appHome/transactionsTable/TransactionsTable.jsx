@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import AvatarGroup from "./AvatarGroup";
+import TransactionsTableOperations from "./TransactionsTableOperations";
 
 function TransactionsTable({ users, transactions }) {
   const transactionTypes = {
@@ -29,6 +30,7 @@ function TransactionsTable({ users, transactions }) {
     <>
       {transactions.length > 0 && users ? (
         <div>
+          <TransactionsTableOperations users={users} />
           <div className="overflow-x-auto mb-2">
             <table className="table table-sm table-pin-rows table-pin-cols">
               {/* head */}
