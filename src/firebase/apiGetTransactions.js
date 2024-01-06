@@ -1,14 +1,21 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { firestore } from "./firebase";
 
-export async function apiGetTransactions({ roomId }) {
+export async function apiGetTransactions({ roomId, filter }) {
   const transactions = [];
-  try {
-    const q = query(
-      collection(firestore, "transactions"),
-      where("roomId", "==", roomId)
-    );
+  let q = query(
+    collection(firestore, "transactions"),
+    where("roomId", "==", roomId)
+  );
 
+  // FILTER
+  if (filter)
+    q = query(
+      collection(firestore, "transactions"),
+      where("roomId", "==", roomId),
+      where(filter.field, "==", filter.value)
+    );
+  try {
     const querySnap = await getDocs(q);
 
     querySnap.forEach((doc) => {

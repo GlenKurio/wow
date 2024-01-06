@@ -14,11 +14,7 @@ function TransactionsTableOperations({ users }) {
 
   return (
     <div className="px-4">
-      <Filter
-        filterField="status"
-        // TODO: how to make author a dynamic field ?
-        options={filterOptions}
-      />
+      <Filter filterField="filter" options={filterOptions} />
       <Sort />
     </div>
   );

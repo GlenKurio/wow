@@ -5,7 +5,7 @@ function Filter({ filterField, options }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentFilter = searchParams.get(filterField) || options.at(0).value;
 
-  function handleClick(value, label) {
+  function handleClick(value) {
     searchParams.set(filterField, value);
     if (searchParams.get("page")) searchParams.set("page", 1);
 
@@ -14,7 +14,7 @@ function Filter({ filterField, options }) {
   // Button Label match the search.params value
   let buttonVal;
   const matchingOption = options.find(
-    (o) => o.value == searchParams.get("status")
+    (o) => o.value == searchParams.get("filter")
   );
   if (matchingOption) {
     buttonVal = matchingOption.label;
@@ -45,7 +45,7 @@ function Filter({ filterField, options }) {
                   : "tracking-[0.04rem]"
               }
               key={option.value}
-              onClick={() => handleClick(option.value, option.label)}
+              onClick={() => handleClick(option.value)}
             >
               <a>{option.label}</a>
             </li>
