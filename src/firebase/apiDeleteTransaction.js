@@ -10,20 +10,22 @@ import {
 } from "firebase/firestore";
 
 export async function apiDeleteTransaction({ id, transactionData }) {
+  const transactionAuthor = transactionData.author;
+  const total = transactionData.total;
   let participants = [];
-
+  let formattedExpense;
   if (transactionData.participants) {
     participants = transactionData.participants;
+    const splitOn = participants.length + 1;
+    const splittedAmount = total / splitOn;
+    formattedExpense = +splittedAmount.toFixed(2);
   } else if (transactionData.recipient) {
     participants.push(transactionData.recipient);
+    formattedExpense = total;
   }
 
   console.log(participants);
-  const transactionAuthor = transactionData.author;
-  const total = transactionData.total;
-  const splitOn = participants.length + 1;
-  const splittedAmount = total / splitOn;
-  let formattedExpense = +splittedAmount.toFixed(1);
+
   try {
     // 1) Get all docs of participants of transaction and update them accordingly
     const batchUpdates = [];
