@@ -22,11 +22,10 @@ export async function authWithGoogle({ roomId }) {
       throw new Error(error.message);
     }
 
-    const userRef = doc(firestore, "users", newUser.user.uid);
-    console.log("userRef id:", userRef.id);
-    console.log("userRef:", userRef);
-    const userSnap = await getDoc(userRef);
-    console.log("userSnap:", userSnap);
+    const newUserRef = doc(firestore, "users", newUser.user.uid);
+
+    const userSnap = await getDoc(newUserRef);
+
     const uniqueId = uuidv4();
     userDoc = {
       uid: newUser.user.uid,
@@ -58,7 +57,7 @@ export async function authWithGoogle({ roomId }) {
       // add a uid row into each userDoc in the room with curently signin up user UID ('signingUpUserUID': 0)
       const batch = writeBatch(firestore);
       usersInTheRoom.forEach((user) => {
-        const fieldName = userRef.id; // Field name from user.uid
+        const fieldName = newUserRef.id; // Field name from user.uid
         const userRef = doc(firestore, "users", user.uid);
         batch.update(userRef, { [fieldName]: 0 });
       });
