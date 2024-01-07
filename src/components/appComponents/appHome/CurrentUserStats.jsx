@@ -1,5 +1,3 @@
-//TODO: Show Stats of current user
-
 import { useCurrentUserData } from "../../../hooks/useGetCurrentUserData";
 import { getExpensesTotal } from "../../../utils/getExpensesTotal";
 import { getTotalTransactionsSumThisMonth } from "../../../utils/getTotalTransactionSumThisMonth";
@@ -28,15 +26,17 @@ function CurrentUserStats({ transactions, users }) {
     const otherUsers = users.filter((user) => {
       return user.uid !== currentUserData.uid;
     });
+    console.log(currentUserData);
     //find balances with them
-    const balances = [];
-    otherUsers.map((user) => {
-      return balances.push(currentUserData[user.uid]);
+    const balances = otherUsers.map((user) => {
+      return currentUserData[user.uid] || 0;
     });
+    console.log(balances);
     // make one balance with group
+
     balance = balances.reduce((acc, b) => {
       return acc + b;
-    });
+    }, 0);
   }
 
   function balanceStatus(balance) {

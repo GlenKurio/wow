@@ -12,7 +12,7 @@ function UserCard({ user }) {
   const currentUserUid = currentUserData.uid;
   const { transactions } = useGetTransactions(currentUserData.roomId);
 
-  const balance = user[currentUserUid];
+  const balance = user[currentUserUid] || 0;
   const firstName = user.fullName.split(" ")[0];
 
   const allUserTransactions = transactions.filter((transaction) => {

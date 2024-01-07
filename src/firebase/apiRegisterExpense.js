@@ -25,7 +25,7 @@ export default async function registerExpense(expense) {
   const total = expenseDoc.total;
   const splitOn = participants.length + 1;
   const splittedAmount = total / splitOn;
-  let formattedExpense = +splittedAmount.toFixed(1);
+  let formattedExpense = +splittedAmount.toFixed(2);
 
   let URL = "";
 

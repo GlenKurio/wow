@@ -52,10 +52,10 @@ export async function authWithGoogle({ roomId }) {
       querySnap.forEach((doc) => {
         usersInTheRoom.push({ ...doc.data() });
       });
-      // add a uid row into each userDoc in the room with cuurently signin up user UID ('signingUpUserUID': 0)
+      // add a uid row into each userDoc in the room with curently signin up user UID ('signingUpUserUID': 0)
       const batch = writeBatch(firestore);
       usersInTheRoom.forEach((user) => {
-        const fieldName = user.uid; // Field name from user.uid
+        const fieldName = userRef.id; // Field name from user.uid
         const userRef = doc(firestore, "users", user.uid);
         batch.update(userRef, { [fieldName]: 0 });
       });
