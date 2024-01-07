@@ -85,7 +85,7 @@ function CurrentUserStats({ transactions, users }) {
           </div>
         </div>
         <div className="stat">
-          <div className="stat-title">Transactions this month</div>
+          <div className="stat-title">Transactions</div>
           <div className="stat-value ">{currentUserData.totalTransactions}</div>
           <div className="stat-desc ">
             {` ${Math.abs(percent)}% ${
@@ -95,7 +95,7 @@ function CurrentUserStats({ transactions, users }) {
         </div>
         <div className="stat">
           <div className="stat-title ">
-            <span className="text-[#4472CA]">Expenses</span> Total this month
+            <span className="text-[#4472CA]">Expenses</span> Total
           </div>
           <div className="stat-value">{formatExpenseTotal} $</div>
           <div className="stat-desc ">
@@ -105,7 +105,7 @@ function CurrentUserStats({ transactions, users }) {
         </div>
         <div className="stat">
           <div className="stat-title ">
-            <span className="text-[#A288E3]">Transfers</span> Total this month
+            <span className="text-[#A288E3]">Transfers</span> Total
           </div>
           <div className="stat-value ">{formatTransfersTotal} $</div>
           <div className="stat-desc">
@@ -114,7 +114,7 @@ function CurrentUserStats({ transactions, users }) {
           </div>
         </div>
         <div className="stat">
-          <div className="stat-title ">Transactions Total this month</div>
+          <div className="stat-title ">Transactions Total</div>
           <div className="stat-value text-base-content">
             {totalTransactionsSum} $
           </div>
