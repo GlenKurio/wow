@@ -110,24 +110,29 @@ function Transfer({ users, currentUserData }) {
             )}
           </div>
         </label>
-
-        {usersToSelect.map((user, idx) => (
-          <label className="text-xl flex items-center gap-8 " key={idx}>
-            <input
-              type="radio"
-              value={user.uid}
-              checked={selectedUser === user.uid}
-              onChange={handleUserSelection}
-              className="radio radio-lg radio-accent"
-            />
-            <div className="avatar flex items-center gap-4">
-              <div className=" w-12 rounded-full  ">
-                <img src={user.profilePicURL || "/avatar-placeholder.png"} />
+        {usersToSelect.length > 0 ? (
+          usersToSelect.map((user, idx) => (
+            <label className="text-xl flex items-center gap-8 " key={idx}>
+              <input
+                type="radio"
+                value={user.uid}
+                checked={selectedUser === user.uid}
+                onChange={handleUserSelection}
+                className="radio radio-lg radio-accent"
+              />
+              <div className="avatar flex items-center gap-4">
+                <div className=" w-12 rounded-full  ">
+                  <img src={user.profilePicURL || "/avatar-placeholder.png"} />
+                </div>
+                <span className="text-2xl font-bold">{user.fullName}</span>
               </div>
-              <span className="text-2xl font-bold">{user.fullName}</span>
-            </div>
-          </label>
-        ))}
+            </label>
+          ))
+        ) : (
+          <p className="pl-2 text-lg font-[600] text-neutral-content tracing-wide">
+            There is no one to send transfer to... Invite someone!
+          </p>
+        )}
 
         <label className="form-control w-full ">
           <div className="label">

@@ -108,22 +108,31 @@ function Expense({ users, currentUserData }) {
           </div>
         </label>
 
-        {usersToSelect.map((user, idx) => (
-          <label className="text-xl flex items-center gap-8" key={idx}>
-            <input
-              {...register(`${user.uid}`)}
-              type="checkbox"
-              defaultChecked="checked"
-              className="checkbox checkbox-lg checkbox-accent"
-            />
-            <div className="avatar flex items-center gap-4">
-              <div className=" w-12 rounded-full  ">
-                <img src={user.profilePicURL || "/avatar-placeholder.png"} />
+        {usersToSelect.length > 0 ? (
+          usersToSelect.map((user, idx) => (
+            <label className="text-xl flex items-center gap-8" key={idx}>
+              <input
+                {...register(`${user.uid}`)}
+                type="checkbox"
+                defaultChecked="checked"
+                className="checkbox checkbox-lg checkbox-accent"
+              />
+              <div className="avatar flex items-center gap-4">
+                <div className="w-12 rounded-full">
+                  <img
+                    src={user.profilePicURL || "/avatar-placeholder.png"}
+                    alt={`Avatar of ${user.fullName}`}
+                  />
+                </div>
+                <span className="text-2xl font-bold">{user.fullName}</span>
               </div>
-              <span className="text-2xl font-bold">{user.fullName}</span>
-            </div>
-          </label>
-        ))}
+            </label>
+          ))
+        ) : (
+          <p className="pl-2 text-lg font-[600] text-neutral-content tracing-wide">
+            There is no one to split expense with... Invite someone!
+          </p>
+        )}
 
         <label className="form-control w-full ">
           <div className="label">

@@ -14,7 +14,7 @@ function AllUsers({ users }) {
 
   return (
     <section className="overflow-scroll max-h-[55vh] ">
-      {usersToDisplay ? (
+      {usersToDisplay.length > 0 ? (
         usersToDisplay.map((user, idx) => <UserCard user={user} key={idx} />)
       ) : (
         <>

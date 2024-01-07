@@ -21,19 +21,23 @@ function CurrentUserStats({ transactions, users }) {
   const { formatTransfersTotal, transfersCount } =
     getTransfersTotal(allUserTransactions);
 
-  //find group members
-  const otherUsers = users.filter((user) => {
-    return user.uid !== currentUserData.uid;
-  });
-  //find balances with them
-  const balances = [];
-  otherUsers.map((user) => {
-    return balances.push(currentUserData[user.uid]);
-  });
-  // make one balance with group
-  const balance = balances.reduce((acc, b) => {
-    return acc + b;
-  });
+  let balance = 0;
+
+  if (users.length > 1) {
+    //find group members
+    const otherUsers = users.filter((user) => {
+      return user.uid !== currentUserData.uid;
+    });
+    //find balances with them
+    const balances = [];
+    otherUsers.map((user) => {
+      return balances.push(currentUserData[user.uid]);
+    });
+    // make one balance with group
+    balance = balances.reduce((acc, b) => {
+      return acc + b;
+    });
+  }
 
   function balanceStatus(balance) {
     let status;
