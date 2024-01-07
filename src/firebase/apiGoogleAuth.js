@@ -65,6 +65,7 @@ export async function authWithGoogle({ roomId }) {
 
       // add a uids of all users into currently signing up user doc ('userInTheRoomUID': 0)
       const userInTheRoomUID = usersInTheRoom.map((user) => user.uid);
+      console.log("users in hte room uids:", userInTheRoomUID);
       userDoc = {
         ...userDoc,
         [userInTheRoomUID]: 0, // Dynamic field name and value
