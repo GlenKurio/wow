@@ -23,7 +23,10 @@ export async function authWithGoogle({ roomId }) {
     }
 
     const userRef = doc(firestore, "users", newUser.user.uid);
+    console.log("userRef id:", userRef.id);
+    console.log("userRef:", userRef);
     const userSnap = await getDoc(userRef);
+    console.log("userSnap:", userSnap);
     const uniqueId = uuidv4();
     userDoc = {
       uid: newUser.user.uid,
