@@ -9,7 +9,7 @@ function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
   const roomId = searchParams.get("room");
-  console.log(roomId);
+
   //TODO: Add ner row "balance with user" to all users in the room with and ID of new signedup user, and add rows with all users balances to a new user
   return (
     <main className="min-h-screen px-4 pt-16 pb-32">

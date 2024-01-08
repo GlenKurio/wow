@@ -15,6 +15,6 @@ export function useFilter(transactions) {
       return t[chosenFilter.field] === chosenFilter.value;
     });
   }
-  console.log(filteredTransactions);
+
   return filteredTransactions;
 }

@@ -15,7 +15,6 @@ function TransactionsTableOperations({ users }) {
   return (
     <div className="px-4">
       <Filter filterField="filter" options={filterOptions} />
-      <Sort />
     </div>
   );
 }

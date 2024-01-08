@@ -22,9 +22,9 @@ function Transfer({ users, currentUserData }) {
     setSelectedUser(selectedUserId);
   };
 
-  // console.log(errors.length);
+ 
   function onSubmit({ ...inputs }) {
-    console.log(inputs);
+    
     let user = selectedUser;
 
     if (user == null) {
@@ -42,7 +42,7 @@ function Transfer({ users, currentUserData }) {
       author: currentUserData.uid,
       roomId: currentUserData.roomId,
     };
-    console.log(transferData);
+    
     registerNewTransfer(transferData);
   }
 

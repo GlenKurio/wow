@@ -24,7 +24,7 @@ export async function apiDeleteTransaction({ id, transactionData }) {
     formattedExpense = total;
   }
 
-  console.log(participants);
+  
 
   try {
     // 1) Get all docs of participants of transaction and update them accordingly

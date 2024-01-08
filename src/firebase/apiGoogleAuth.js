@@ -15,7 +15,7 @@ const provider = new GoogleAuthProvider();
 
 export async function authWithGoogle({ roomId }) {
   let userDoc;
-  console.log(roomId);
+
   try {
     const newUser = await signInWithPopup(auth, provider);
     if (!newUser && error) {

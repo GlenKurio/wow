@@ -10,7 +10,7 @@ import InviteUserCard from "../../appComponents/inviteUser/InviteUserCard";
 function AppNav({ currentUserData }) {
   const firstName = currentUserData.fullName.split(" ")[0];
   const [showModal, setShowModal] = useState(false);
-  console.log(currentUserData.profilePicURL);
+  
   async function handleLogout() {
     try {
       await signOut(auth);

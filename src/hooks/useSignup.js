@@ -16,7 +16,7 @@ export function useSignup() {
     },
 
     onError: (err) => {
-      console.log(err);
+      
       toast.error("Can`t create account right now");
     },
   });
