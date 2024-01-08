@@ -64,13 +64,14 @@ export async function authWithGoogle({ roomId }) {
       await batch.commit();
 
       // add a uids of all users into currently signing up user doc ('userInTheRoomUID': 0)
-      const userInTheRoomUID = usersInTheRoom.map((user) => user.uid);
-
-      userDoc = {
-        ...userDoc,
-        [userInTheRoomUID]: 0, // Dynamic field name and value
-        roomId: roomId,
-      };
+      const userInTheRoomUID = usersInTheRoom.map((user) => {
+        userDoc = {
+          ...userDoc,
+          [userInTheRoomUID]: 0, // Dynamic field name and value
+          roomId: roomId,
+        };
+      });
+      console.log("new user doc:", userDoc);
       await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
     } else {
       // signup with new doc
