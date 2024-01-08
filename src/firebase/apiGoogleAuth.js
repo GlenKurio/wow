@@ -52,22 +52,24 @@ export async function authWithGoogle({ roomId }) {
 
       const querySnap = await getDocs(q);
       querySnap.forEach((doc) => {
-        usersInTheRoom.push({ ...doc.data() });
+        usersInTheRoom.push(doc.id);
       });
+
       // add a uid row into each userDoc in the room with curently signin up user UID ('signingUpUserUID': 0)
       const batch = writeBatch(firestore);
       usersInTheRoom.forEach((user) => {
-        const fieldName = newUserRef.id; // Field name from user.uid
-        const userRef = doc(firestore, "users", user.uid);
+        const fieldName = newUser.user.uid; // Field name from user.uid
+        const userRef = doc(firestore, "users", user);
         batch.update(userRef, { [fieldName]: 0 });
       });
       await batch.commit();
 
       // add a uids of all users into currently signing up user doc ('userInTheRoomUID': 0)
-      const userInTheRoomUID = usersInTheRoom.map((user) => {
+      // add a uids of all users into currently signing up user doc ('userInTheRoomUID': 0)
+      usersInTheRoom.map((user) => {
         userDoc = {
           ...userDoc,
-          [userInTheRoomUID]: 0, // Dynamic field name and value
+          [user]: 0, // Dynamic field name and value
           roomId: roomId,
         };
       });
