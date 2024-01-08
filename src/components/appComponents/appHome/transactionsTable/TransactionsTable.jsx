@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 import AvatarGroup from "./AvatarGroup";
 import TransactionsTableOperations from "./TransactionsTableOperations";
+import { useFilter } from "../../../../hooks/useFilter";
 
 function TransactionsTable({ users, transactions }) {
   const transactionTypes = {
     transfer: "text-[#A288E3] ",
     expense: "text-[#4472CA]",
   };
+
+  const filteredTransactions = useFilter(transactions);
 
   // get user info for transaction
   function getUserInfo(transaction) {
@@ -47,7 +50,7 @@ function TransactionsTable({ users, transactions }) {
               </thead>
 
               <tbody>
-                {transactions.map((transaction, idx) => (
+                {filteredTransactions.map((transaction, idx) => (
                   <tr key={idx}>
                     <td>
                       <div className="flex items-center gap-3">

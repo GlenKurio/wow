@@ -8,13 +8,6 @@ export async function apiGetTransactions({ roomId, filter }) {
     where("roomId", "==", roomId)
   );
 
-  // FILTER
-  if (filter)
-    q = query(
-      collection(firestore, "transactions"),
-      where("roomId", "==", roomId),
-      where(filter.field, "==", filter.value)
-    );
   try {
     const querySnap = await getDocs(q);
 
