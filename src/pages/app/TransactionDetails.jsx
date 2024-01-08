@@ -13,7 +13,12 @@ function TransactionDetails() {
   const { currentUserData } = useCurrentUserData();
   const { users } = useGetUsers(currentUserData.roomId);
   const { isLoading, transactionData } = useGetTransactionDetails(id);
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <div className="min-h-screen grid place-content-center">
+        <span className="loading loading-dots loading-lg loading-accent"></span>
+      </div>
+    );
 
   const currentTransactionAuthor = users.find(
     (user) => user.uid === transactionData.author

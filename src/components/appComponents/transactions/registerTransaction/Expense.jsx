@@ -157,15 +157,10 @@ function Expense({ users, currentUserData }) {
             onChange={handleImageChange}
           />
         </label>
-        {isRegistering ? (
-          <button className="btn btn-accent w-full mt-8">
-            <span className="loading loading-spinner loading-xs"></span>{" "}
-          </button>
-        ) : (
-          <button className="btn bg-gradient-to-r  from-[#8E2DE2] to-[#4A00E0] w-full mt-8">
-            Register Transaction{" "}
-          </button>
-        )}
+
+        <button className=" btn bg-gradient-to-r  from-[#8E2DE2] to-[#4A00E0] w-full mt-8">
+          {isRegistering ? "Registering expense ..." : "Register Transaction"}
+        </button>
       </form>
     </section>
   );
