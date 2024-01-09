@@ -4,7 +4,7 @@
 
 ## Description
 
-## App for managing group finances that help to get answer on one simple queastion: _Who owes whom?_ (And how much😅);
+## App for managing group finances that helps to find the answer on one simple question: _Who owes whom?_ (And how much😅);
 
 ## Features
 
@@ -32,3 +32,4 @@
 - JS Library: React.js
 - Extensions: React router, Tanstack React Query, React Hook Form, - React Hot Toast
 - Backend & Auth: Firebase 🔥
+- Deploy: Netlify
