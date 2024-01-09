@@ -9,7 +9,9 @@ import { getTransfersTotal } from "../../../utils/getTransfersTotal";
 function UserCard({ user }) {
   //TODO: show balance with currentUser
   const { currentUserData } = useCurrentUserData();
+
   const currentUserUid = currentUserData.uid;
+
   const { transactions } = useGetTransactions(currentUserData.roomId);
 
   const balance = user[currentUserUid] || 0;
